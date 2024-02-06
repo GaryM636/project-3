@@ -5,6 +5,7 @@ import Discover from './Pages/Page';
 import Trends from './Components/Trends/Trends';
 import './main.css';
 import Images from './Components/Images/ProfileImages'
+import User from './Pages/User';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/profile" element={<Images />} />
               <Route path="/" element={<Home />} />
               <Route path="/discover" element={<Discover />} />
+              <Route path="/users/:userId" element={<User />} />
             </Routes>
           </div>
           <div className="trends-section">
