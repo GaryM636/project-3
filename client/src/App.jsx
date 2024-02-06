@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import Discover from './Pages/Page';
 import Trends from './Components/Trends/Trends';
 import './main.css';
+import Images from './Components/Images/ProfileImages'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           </div>
           <div className='center-section'>
             <Routes>
+              <Route path="/profile" element={<Images />} />
               <Route path="/" element={<Home />} />
               <Route path="/discover" element={<Discover />} />
             </Routes>
