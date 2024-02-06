@@ -1,0 +1,10 @@
+.trends-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 28%;
+    height: 100%;
+    border: 1px solid red;
+  }
+  
