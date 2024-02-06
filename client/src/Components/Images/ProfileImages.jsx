@@ -21,6 +21,7 @@ const Profile = () => {
           <p>Click here to add a banner!</p>
         )}
       </div>
+      
       <div className="profile-pic" {...profileDropzone.getRootProps()}>
         <input {...profileDropzone.getInputProps()} />
         {profilePic ? (
@@ -29,6 +30,7 @@ const Profile = () => {
           <p>Click here to add a profile picture!</p>
         )}
       </div>
+      <div className= 'divider'></div>
     </div>
   );
 };

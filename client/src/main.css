@@ -72,3 +72,19 @@
     margin-top: 20px;
     display: flex;
   }
+
+  .banner{
+    border: #000 solid;
+    padding: 50px;
+    margin: 0px 100px 0px 100px;
+  }
+
+  .profile-pic {
+    border: #000 solid;
+    margin-left: 800px;
+    margin-right: 100px;
+  }
+  .divider{
+    border: #fbaa13 solid;
+    margin: 20px 0px;
+  }
