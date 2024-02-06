@@ -31,6 +31,39 @@ mutation createComment($text: String, $postId: ID) {
 }
 `;
 
+// Following 
+export const FOLLOW_USER = gql`
+mutation followUser($userId: ID!) {
+  followUser(userId: $userId) {
+    _id
+    username
+    bio
+    birthday
+    posts {
+      _id
+      text
+      userId {
+        username
+      }
+      likes
+      comments {
+        text
+        userId {
+          username
+        }
+        likes
+      }
+    }
+    followers {
+      username
+    }
+    following {
+      username
+    }
+  }
+}
+`;
+
 // Login
 export const LOGIN = gql`
 mutation login($email: String!, $password: String!) {
