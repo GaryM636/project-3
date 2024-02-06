@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const dateFormat = require('../utils/dateFormat');
+
 
 const UserSchema = new Schema({
     username: {
@@ -19,9 +21,26 @@ const UserSchema = new Schema({
         match: [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
             'This is not a valid email']
     },
+    bio: {
+        type: String,
+        maxlength: 60,
+    },
+    birthday: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+    },
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
+    }],
+    followers:[{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    following: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }]
 },
     {

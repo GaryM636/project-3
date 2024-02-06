@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
 
-const PostSchema = new Schema({
+
+const CommentSchema = new Schema({
     text: {
         type: String,
         maxlength: 180,
@@ -16,22 +16,23 @@ const PostSchema = new Schema({
         ref: 'User',
         require: true
     },
+    postId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Post',
+        require: true
+    },
     likes: {
         type: Number
     },
-    comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comment',
-    }]
 },
-    {
-        toJSON: {
-            getters: true
-        },
-        id: false,
-    }
+{
+    toJSON: {
+        getters: true
+    },
+    id: false,
+}
 );
 
-const Post = model('Post', PostSchema);
+const Comment = model('Comment', CommentSchema);
 
-module.exports = Post;
+module.exports = Comment;
