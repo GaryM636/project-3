@@ -10,13 +10,44 @@ module.exports = {
             return await User.find({}).populate("posts");
         }, // Working in sandbox
         getUser: async (_, args) => {
-            return await User.findById(args.userId).populate('posts');
-        }, // Working in sandbox
+            return await User.findById(args.userId)
+                .populate('posts')
+                .populate(
+                    {
+                        path: 'posts',
+                        populate:
+                        {
+                            path: 'comments',
+                            populate:
+                            {
+                                path: "userId"
+                            }
+                        }
+                    }
+                );
+        },
         getAllPosts: async () => {
-            return await Post.find({}).populate('userId').populate("comments"); // Working
+            return await Post.find({})
+                .populate('userId')
+                .populate(
+                    {
+                        path: "comments",
+                        populate: 
+                        {
+                            path: "userId"
+                        }
+                    }
+                ); // Working
         },
         getPost: async (_, args) => {
-            return await Post.findById(args.postId).populate('userId').populate({ path: "comments", populate: { path: "userId" } } ); // Working
+            return await Post.findById(args.postId)
+                .populate('userId')
+                .populate(
+                    {
+                        path: "comments",
+                        populate: { path: "userId" }
+                    }
+                ); // Working
         },
         getAllComments: async () => {
             return await Comment.find({}).populate("userId");

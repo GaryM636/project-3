@@ -4,24 +4,39 @@ import { gql } from '@apollo/client';
 export const QUERY_USERS = gql`
 query getAllUsers {
   getAllUsers {
-    username
-    password
     _id
-    email
+    username
   }
 }
-`;
+`; 
 
 export const QUERY_USER = gql`
 query getUser($userId: ID) {
   getUser(userId: $userId) {
     _id
     username
-    password
-    email
+    bio
+    birthday
     posts {
       _id
       text
+      likes
+      comments {
+        _id
+        text
+        likes
+        userId {
+          username
+        }
+      }
+    }
+    followers {
+      _id
+      username
+    }
+    following {
+      _id
+      username
     }
   }
 }
@@ -29,12 +44,21 @@ query getUser($userId: ID) {
 
 // Post
 export const QUERY_POSTS = gql`
-query getAllPosts {
+query GetAllPosts {
   getAllPosts {
     _id
     text
     userId {
       username
+    }
+    likes
+    comments {
+      _id
+      text
+      userId {
+        username
+      }
+      likes
     }
   }
 }
@@ -48,6 +72,42 @@ query getPost($postId: ID) {
     userId {
       username
     }
+    likes
+    comments {
+      _id
+      text
+      userId {
+        username
+      }
+      likes
+    }
+  }
+}
+`;
+
+// Comment
+export const QUERY_COMMENTS = gql`
+query getAllComments {
+  getAllComments {
+    _id
+    text
+    userId {
+      username
+    }
+    likes
+  }
+}
+`;
+
+export const QUERY_COMMENT =gql`
+query GetComment($commentId: ID) {
+  getComment(commentId: $commentId) {
+    _id
+    text
+    userId {
+      username
+    }
+    likes
   }
 }
 `;
