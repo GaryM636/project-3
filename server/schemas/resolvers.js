@@ -7,11 +7,13 @@ const { User, Post, Comment } = require('../models');
 module.exports = {
     Query: {
         getAllUsers: async () => {
-            return await User.find({}).populate("posts");
+            return await User.find({}).populate("posts").populate("following").populate("followers");
         }, // Working in sandbox
         getUser: async (_, args) => {
             return await User.findById(args.userId)
                 .populate('posts')
+                .populate("following")
+                .populate("followers")
                 .populate(
                     {
                         path: 'posts',
@@ -32,7 +34,7 @@ module.exports = {
                 .populate(
                     {
                         path: "comments",
-                        populate: 
+                        populate:
                         {
                             path: "userId"
                         }
@@ -76,6 +78,13 @@ module.exports = {
                 const comment = await Comment.create({ ...args, userId: context.user._id });
                 await Post.findByIdAndUpdate(args.postId, { $push: { comments: comment._id } }, { new: true })
                 return comment.populate("postId")
+            }
+            throw AuthenticationError
+        },
+        followUser: async (_, args, context) => {
+            if (context.user) {
+                await User.findByIdAndUpdate(args.userId, { $push: { followers: context.user._id } }, { new: true } )
+                return await User.findByIdAndUpdate(context.user._id, { $push: { following: args.userId } }, { new: true })
             }
             throw AuthenticationError
         },

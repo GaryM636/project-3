@@ -47,6 +47,7 @@ module.exports = gql`
         createUser(username: String, password: String, email: String, bio: String, birthday: String): Auth # Works
         createPost(text: String): Post # Works
         createComment(text: String, postId: ID): Comment # Needs to be worked on for userId and postId
+        followUser(userId: ID!): User
         login(email: String!, password: String!): Auth # Works
     }
 `;
