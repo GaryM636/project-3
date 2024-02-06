@@ -6,23 +6,6 @@ query getAllUsers {
   getAllUsers {
     _id
     username
-    password
-    email
-    bio
-    birthday
-    posts {
-      _id
-      text
-      likes
-    }
-    followers {
-      _id
-      username
-    }
-    following {
-      _id
-      username
-    }
   }
 }
 `; 
@@ -42,6 +25,9 @@ query getUser($userId: ID) {
         _id
         text
         likes
+        userId {
+          username
+        }
       }
     }
     followers {
@@ -58,12 +44,21 @@ query getUser($userId: ID) {
 
 // Post
 export const QUERY_POSTS = gql`
-query getAllPosts {
+query GetAllPosts {
   getAllPosts {
     _id
     text
     userId {
       username
+    }
+    likes
+    comments {
+      _id
+      text
+      userId {
+        username
+      }
+      likes
     }
   }
 }
@@ -77,6 +72,42 @@ query getPost($postId: ID) {
     userId {
       username
     }
+    likes
+    comments {
+      _id
+      text
+      userId {
+        username
+      }
+      likes
+    }
+  }
+}
+`;
+
+// Comment
+export const QUERY_COMMENTS = gql`
+query getAllComments {
+  getAllComments {
+    _id
+    text
+    userId {
+      username
+    }
+    likes
+  }
+}
+`;
+
+export const QUERY_COMMENT =gql`
+query GetComment($commentId: ID) {
+  getComment(commentId: $commentId) {
+    _id
+    text
+    userId {
+      username
+    }
+    likes
   }
 }
 `;
