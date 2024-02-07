@@ -6,6 +6,7 @@ import Trends from './Components/Trends/Trends';
 import './main.css';
 import Images from './Components/Images/ProfileImages'
 import User from './Pages/User';
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/discover" element={<Discover />} />
               <Route path="/users/:userId" element={<User />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
           <div className="trends-section">
