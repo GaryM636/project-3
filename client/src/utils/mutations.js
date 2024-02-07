@@ -7,7 +7,22 @@ mutation CreateUser($username: String, $password: String, $email: String, $bio: 
     token
   }
 }
-`;
+`; // Good
+
+// Bio
+export const CREATE_BIO = gql`
+mutation createBio($text: String, $website: String, $location: String, $birthday: String) {
+  createBio(text: $text, website: $website, location: $location, birthday: $birthday) {
+    bio {
+      _id
+      text
+      location
+      website
+      birthday
+    }
+  }
+}
+`; // Good
 
 // Post
 export const CREATE_POST = gql`
@@ -20,7 +35,16 @@ mutation createPost($text: String) {
     }
   }
 }
-`;
+`; // Good
+
+// Like Post
+export const LIKE_POST = gql`
+mutation LikePost($postId: ID!) {
+  likePost(postId: $postId) {
+    _id
+  }
+}
+`; // Good
 
 // Comment
 export const CREATE_COMMENT = gql`
@@ -29,40 +53,25 @@ mutation createComment($text: String, $postId: ID) {
     text
   }
 }
+`; // Good
+
+// Like Comment
+export const LIKE_COMMENT = gql`
+mutation likeComment($commentId: ID!) {
+  likeComment(commentId: $commentId) {
+    _id
+  }
+}
 `;
 
 // Following 
 export const FOLLOW_USER = gql`
 mutation followUser($userId: ID!) {
   followUser(userId: $userId) {
-    _id
     username
-    bio
-    birthday
-    posts {
-      _id
-      text
-      userId {
-        username
-      }
-      likes
-      comments {
-        text
-        userId {
-          username
-        }
-        likes
-      }
-    }
-    followers {
-      username
-    }
-    following {
-      username
-    }
   }
 }
-`;
+`; // Good
 
 // Login
 export const LOGIN = gql`
@@ -71,4 +80,4 @@ mutation login($email: String!, $password: String!) {
     token
   }
 }
-`;
+`; // Good

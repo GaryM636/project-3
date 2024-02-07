@@ -7,8 +7,7 @@ module.exports = gql`
         username: String
         password: String
         email: String
-        bio: String
-        birthday: String
+        bio: Bio
         posts: [Post]
         followers: [User]
         following: [User]
@@ -18,15 +17,35 @@ module.exports = gql`
         _id: ID
         text: String
         userId: User
-        likes: Int
+        likes: [PostLikes]
         comments: [Comment]
+    }
+
+    type PostLikes {
+        _id: ID
+        userId: ID!
+        username: String!
     }
 
     type Comment {
         _id: ID
         text: String
         userId: User
-        likes: Int
+        likes: [CommentLikes]
+    }
+
+    type CommentLikes {
+        _id: ID
+        userId: ID!
+        username: String!
+    }
+
+    type Bio {
+        _id: ID
+        text: String
+        location: String
+        website: String
+        birthday: String
     }
 
     type Auth {
@@ -44,9 +63,12 @@ module.exports = gql`
     }
 
     type Mutation {
-        createUser(username: String, password: String, email: String, bio: String, birthday: String): Auth # Works
+        createUser(username: String, password: String, email: String): Auth # Works
         createPost(text: String): Post # Works
         createComment(text: String, postId: ID): Comment # Needs to be worked on for userId and postId
+        createBio(text: String, website: String, location: String, birthday: String): User
+        likePost(postId: ID!): Post
+        likeComment(commentId: ID!): Comment
         followUser(userId: ID!): User
         login(email: String!, password: String!): Auth # Works
     }

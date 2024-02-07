@@ -46,6 +46,15 @@ export const getPost = (postId) => {
   });
 };
 
+export const likePost = (postId) => {
+  return fetch(`/api/post/${postId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+}
+
 export const createPost = (postData) => {
   return fetch('/api/user', {
     method: 'POST',
@@ -83,4 +92,8 @@ export const getComment = (commentId) => {
       'Content-Type': 'application/json',
     },
   });
+};
+
+export const likeComment = (commentId) => {
+  return fetch(`/api/comment/${commentId}`)
 }

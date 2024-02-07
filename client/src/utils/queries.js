@@ -8,96 +8,112 @@ query getAllUsers {
     username
   }
 }
-`; 
+`; // Done
 
 export const QUERY_USER = gql`
 query getUser($userId: ID) {
   getUser(userId: $userId) {
     _id
     username
-    bio
-    birthday
+    bio {
+      _id
+      text
+      location
+      website
+      birthday
+    }
     posts {
       _id
       text
-      likes
+      userId {
+        username
+      }
+      likes {
+        username
+      }
       comments {
-        _id
         text
-        likes
         userId {
+          username
+        }
+        likes {
           username
         }
       }
     }
     followers {
-      _id
       username
     }
     following {
-      _id
       username
     }
   }
 }
-`;
+`; // Done
 
 // Post
 export const QUERY_POSTS = gql`
-query GetAllPosts {
+query getAllPosts {
   getAllPosts {
     _id
     text
     userId {
       username
     }
-    likes
+    likes {
+      username
+    }
     comments {
-      _id
       text
       userId {
         username
       }
-      likes
+      likes {
+        username
+      }
     }
   }
 }
-`;
+`; // Done
 
 export const QUERY_POST = gql`
-query getPost($postId: ID) {
+query GetPost($postId: ID) {
   getPost(postId: $postId) {
-    _id
     text
     userId {
       username
     }
-    likes
+    likes {
+      username
+    }
     comments {
-      _id
       text
       userId {
         username
       }
-      likes
+      likes {
+        username
+      }
     }
   }
 }
-`;
+`; // Done
 
 // Comment
 export const QUERY_COMMENTS = gql`
-query getAllComments {
+query GetAllComments {
   getAllComments {
     _id
     text
     userId {
       username
     }
-    likes
+    likes {
+      username
+    }
   }
 }
-`;
+`; // Done
 
 export const QUERY_COMMENT =gql`
 query GetComment($commentId: ID) {
@@ -107,7 +123,9 @@ query GetComment($commentId: ID) {
     userId {
       username
     }
-    likes
+    likes {
+      username
+    }
   }
 }
-`;
+`; // Done
