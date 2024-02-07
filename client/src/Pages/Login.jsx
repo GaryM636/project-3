@@ -17,8 +17,9 @@ const Login = ({ handleLogin }) => {
         },
         onCompleted: (data) => {
             console.log('Login success:', data);
-            handleLogin(); // Call handleLogin function passed from parent component
-            navigate("/"); // Redirect to home page
+            localStorage.setItem('token', data.login.token);
+            handleLogin();
+            navigate("/");
         },
     });
 
@@ -28,7 +29,8 @@ const Login = ({ handleLogin }) => {
         },
         onCompleted: (data) => {
             console.log('Sign up success:', data);
-            login({ variables: { email: signupEmail, password: signupPassword } }); // Log in the user after sign up
+            // Log in the user after sign up
+            login({ variables: { email: signupEmail, password: signupPassword } });
         },
     });
 

@@ -7,18 +7,17 @@ import Trends from './Components/Trends/Trends';
 import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
 import Login from './Pages/Login';
-import SearchBar from './Components/Search/SearchBar';
 import './main.css';
 
-
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
   };
 
@@ -38,7 +37,6 @@ function App() {
           </Routes>
         </div>
         <div className="trends-section">
-            <SearchBar />
           <Trends />
         </div>
       </div>
