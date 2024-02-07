@@ -28,12 +28,15 @@ h1 {
 
 .trends-section {
   min-width: 24vw;
-  ;
+  display:none;
   background-color: #e5dada;
   text-align: center;
   margin:20px;
-  border-radius: 10px;
-  
+  border-radius: 10px; 
+}
+
+#search {
+  display:none;
 }
 
 .aside-menu {
@@ -99,4 +102,30 @@ h1 {
 .divider {
   border: #fbaa13 solid;
   margin: 20px 0px;
+}
+/* mobile responsiveness*/
+@media (min-width: 768px) {
+  .aside-menu {
+    width: 20vw;
+    margin: 20px;
+  }
+
+  .center-section {
+    flex: 1;
+  }
+
+  .trends-section {
+    display: block; /* show on larger screens */
+    width: 24vw;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #e5dada;
+    text-align: center;
+  }
+
+  #search {
+    display: inline-block;
+    width:75%
+  }
 }
