@@ -53,23 +53,27 @@ const Login = ({ handleLogin }) => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLoginSubmit}>
-                <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
-                <input type="password" autoComplete="on" placeholder="Password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
-                <button type="submit" disabled={loginLoading}>Login</button>
-            </form>
-            {loginError && <p>Error: {loginError.message}</p>}
+        <div className="login-container">
+            <div className="login-form">
+                <h2 className="login-title">Login</h2>
+                <form onSubmit={handleLoginSubmit}>
+                    <input className="input-field" type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
+                    <input className="input-field" type="password" autoComplete="on" placeholder="Password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
+                    <button className="submit-button" type="submit" disabled={loginLoading}>Login</button>
+                </form>
+                {loginError && <p className="error-message">Error: {loginError.message}</p>}
+            </div>
 
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSignUpSubmit}>
-                <input type="email" placeholder="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} />
-                <input type="text" placeholder="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} />
-                <input type="password" autoComplete="on" placeholder="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
-                <button type="submit" disabled={createUserLoading}>Sign Up</button>
-            </form>
-            {createUserError && <p>Error: {createUserError.message}</p>}
+            <div className="login-form">
+                <h2 className="login-title">Sign Up</h2>
+                <form onSubmit={handleSignUpSubmit}>
+                    <input className="input-field" type="email" placeholder="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} />
+                    <input className="input-field" type="text" placeholder="Username" value={signupUsername} onChange={(e) => setSignupUsername(e.target.value)} />
+                    <input className="input-field" type="password" autoComplete="on" placeholder="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
+                    <button className="submit-button" type="submit" disabled={createUserLoading}>Sign Up</button>
+                </form>
+                {createUserError && <p className="error-message">Error: {createUserError.message}</p>}
+            </div>
         </div>
     );
 };
