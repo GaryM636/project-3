@@ -29,6 +29,14 @@ module.exports = gql`
         likes: Int
     }
 
+    type Message {
+        _id: ID
+        text: String!
+        createdAt : String
+        senderId: ID!
+        receiverUsername: String!
+    }
+
     type Auth {
         token: ID
         user: User
@@ -49,5 +57,6 @@ module.exports = gql`
         createComment(text: String, postId: ID): Comment # Needs to be worked on for userId and postId
         followUser(userId: ID!): User
         login(email: String!, password: String!): Auth # Works
+        sendMessage(text: String!, receiverUsername: String! ) : Message 
     }
 `;

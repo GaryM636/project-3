@@ -111,3 +111,13 @@ query GetComment($commentId: ID) {
   }
 }
 `;
+
+export const GET_MESSAGES = gql`
+query GetMessages {
+  messages {
+    _id
+    text
+    sender
+  }
+}
+`;

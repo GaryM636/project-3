@@ -1,6 +1,6 @@
 const { AuthenticationError, signToken } = require('../utils/auth');
 
-const { User, Post, Comment } = require('../models');
+const { User, Post, Comment, Message } = require('../models');
 
 
 
@@ -104,6 +104,14 @@ module.exports = {
             const token = signToken(user);
 
             return { token, user };
-        } // Working
+        }, // Working
+
+        sendMessage: async(_,{text, receiverUsername}, context) => {
+            if (context.user) {
+                const message = await Message.create({text,receiverUsername, senderId: context.user._id})
+                return message 
+            }
+            throw AuthenticationError
+        }
     }
 };
