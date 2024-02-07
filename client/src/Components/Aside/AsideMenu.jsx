@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AsideMenu = () => {
     return (
-        <aside className="aside-menu">
+        <aside>
                 <img className="menu-logo" src="../../../logo.png" alt="logo" />
             
             <ul>
