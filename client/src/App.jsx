@@ -7,6 +7,7 @@ import './main.css';
 import Images from './Components/Images/ProfileImages'
 import User from './Pages/User';
 import Login from './Pages/Login';
+import SearchBar from './Components/Search/SearchBar';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             </Routes>
           </div>
           <div className="trends-section">
+            <SearchBar />
             <Trends />
           </div>
         </div>
