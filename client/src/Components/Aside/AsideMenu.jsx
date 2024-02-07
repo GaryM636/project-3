@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AsideMenu = () => {
+const AsideMenu = ({ isLoggedIn, handleLogout }) => {
     return (
         <aside>
-                <img className="menu-logo" src="../../../logo.png" alt="logo" />
+            <img className="menu-logo" src="../../../logo.png" alt="logo" />
             
             <ul>
                 <li>
@@ -13,18 +13,30 @@ const AsideMenu = () => {
                 <li>
                     <Link to="/discover"><i className="fa-solid fa-magnifying-glass"></i>Discover</Link>
                 </li>
-                <li>
-                    <Link to="/notifications"><i className="fa-solid fa-circle-exclamation"></i>Notifications</Link>
-                </li>
-                <li>
-                    <Link to="/messages"><i className="fa-solid fa-envelope"></i>Messages</Link>
-                </li>
-                <li>
-                    <Link to="/profile"><i className="fa-solid fa-user"></i>Profile</Link>
-                </li>
-                <li>
-                    <Link to="/login"><i className="fa-solid fa-gear"></i>Login</Link>
-                </li>
+                {isLoggedIn && (
+                    <>
+                        <li>
+                            <Link to="/notifications"><i className="fa-solid fa-circle-exclamation"></i>Notifications</Link>
+                        </li>
+                        <li>
+                            <Link to="/messages"><i className="fa-solid fa-envelope"></i>Messages</Link>
+                        </li>
+                    </>
+                )}
+                {isLoggedIn && (
+                    <li>
+                        <Link to="/profile"><i className="fa-solid fa-user"></i>Profile</Link>
+                    </li>
+                )}
+                {isLoggedIn ? (
+                    <li>
+                        <Link to="/" onClick={handleLogout}><i className="fa-solid fa-sign-out"></i>Logout</Link>
+                    </li>
+                ) : (
+                    <li>
+                        <Link to="/login"><i className="fa-solid fa-gear"></i>Login</Link>
+                    </li>
+                )}
             </ul>
         </aside>
     );
