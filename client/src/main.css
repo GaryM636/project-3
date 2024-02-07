@@ -32,8 +32,11 @@ h1 {
   background-color: #e5dada;
   text-align: center;
   margin:20px;
-  border-radius: 10px;
-  
+  border-radius: 10px; 
+}
+
+#search {
+  display:none;
 }
 
 .aside-menu {
@@ -119,5 +122,10 @@ h1 {
     padding: 20px;
     background-color: #e5dada;
     text-align: center;
+  }
+
+  #search {
+    display: inline-block;
+    width:75%
   }
 }
