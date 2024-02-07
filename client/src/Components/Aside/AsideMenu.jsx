@@ -22,6 +22,9 @@ const AsideMenu = () => {
                 <li>
                     <Link to="/profile"><i className="fa-solid fa-user"></i>Profile</Link>
                 </li>
+                <li>
+                    <Link to="/login"><i className="fa-solid fa-gear"></i>Login</Link>
+                </li>
             </ul>
         </aside>
     );
