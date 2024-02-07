@@ -5,6 +5,7 @@
 }
 
 h1 {
+  padding-top: 50px;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -35,8 +36,29 @@ h1 {
   border-radius: 10px; 
 }
 
+.input {
+  display:none;
+  padding: 5px;
+  border-radius: 28px;
+  background-color: #fff;
+}
+
 #search {
   display:none;
+  padding: 5px;
+  border-radius: 28px;
+  border: none;
+  font-size: 17px;
+}
+
+button {
+display:none;
+background-color:#840032 ;
+width:15%;
+padding: 15px;
+margin-left: 40px;
+border-radius: 28px;
+border: none;
 }
 
 .aside-menu {
@@ -126,7 +148,29 @@ h1 {
 
   #search {
     display: inline-block;
-    width:75%
+  }
+
+  .input {
+    display: block;
+  }
+
+  button {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  #search {
+    display: inline-block;
+    width:25%
+  }
+  .input {
+    display: block;
+  }
+
+  button {
+    display: block;
+    margin-left: 50%;
   }
 }
 
@@ -183,3 +227,4 @@ h1 {
   margin-top: 10px;
   font-size: 14px;
 }
+

@@ -13,7 +13,7 @@ function SearchBar({ onSearch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='input' onSubmit={handleSubmit}>
             <input
                 id='search'
                 name='searchBar'
@@ -22,7 +22,7 @@ function SearchBar({ onSearch }) {
                 value={searchTerm}
                 onChange={handleChange}
             />
-            <button type="submit" className="fa-solid fa-magnifying-glass"></button>
+            <button type="submit" className="btn fa-solid fa-magnifying-glass"></button>
         </form>
     );
 }
