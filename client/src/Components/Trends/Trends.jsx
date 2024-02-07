@@ -3,7 +3,7 @@ import React from "react";
 function Trends() {
     return (
         <>
-          <div className="trends-section">
+          <div>
             <h1>Trends</h1>
           </div>
         </>

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import PostsList from '../components/PostsList';
+import PostsList from '../Components/PostsList';
 
 import { QUERY_USER } from '../utils/queries';
 
@@ -30,6 +30,7 @@ const User = () => {
 
         {/* display all existing user's posts (pass in PostsList component for individual post cards) */}
         { user.posts?.length > 0 && <PostsList posts={user.posts} /> }
+
     </>
     );
 };

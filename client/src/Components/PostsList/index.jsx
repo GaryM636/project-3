@@ -1,24 +1,30 @@
-import { QUERY_POSTS } from '../../utils/queries'
-import { useQuery } from '@apollo/client'
+import { useQuery } from "@apollo/client";
+import { QUERY_POSTS } from "../../utils/queries";
 
+const PostsList = () => {
+    const { data, loading } = useQuery(QUERY_POSTS);
 
-function PostsList() {
-    const { loading, data } = useQuery(QUERY_POSTS)
-    console.log(loading, data);
-    // const posts = data?.getAllPosts || []
-    // console.log(posts)
+    const posts = data?.getAllPosts || [];
+    console.log(posts)
 
-    // if ( loading) {
-    //     return <div>Loading...</div>
-    // }
-
-    // console.log(posts);
+    if (loading) {
+        return <h3>No Posts Yet</h3>;
+    }
 
     return (
-        <>
-        <h1>Hello I am adding this because react was not liking it being blank --Clyde</h1>
-        </>
+      <>
+      <div>
+        { posts.map((post) => (
+            <div key={post._id}>
+                <div>
+                    <h4>{post.text}</h4>
+                    <p>likes:{post.likes.length}</p>
+                </div>
+            </div>
+        ))}
+      </div>
+      </>
     )
 }
 
-export default PostsList
+export default PostsList;
