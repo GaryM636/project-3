@@ -57,6 +57,7 @@ query getAllPosts {
   getAllPosts {
     _id
     text
+    picture
     userId {
       username
     }
@@ -64,6 +65,7 @@ query getAllPosts {
       username
     }
     comments {
+      _id
       text
       userId {
         username
@@ -77,9 +79,11 @@ query getAllPosts {
 `; // Done
 
 export const QUERY_POST = gql`
-query GetPost($postId: ID) {
+query getPost($postId: ID) {
   getPost(postId: $postId) {
+    _id
     text
+    picture
     userId {
       username
     }
@@ -87,6 +91,7 @@ query GetPost($postId: ID) {
       username
     }
     comments {
+      _id
       text
       userId {
         username

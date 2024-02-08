@@ -26,6 +26,10 @@ const UserSchema = new Schema({
         type: BioSchema,
         default: () => ({}) 
     },
+    profilePicture: {
+        type: String,
+        allowNull: true
+    },
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'

@@ -7,6 +7,10 @@ const PostSchema = new Schema({
         type: String,
         maxlength: 180,
     },
+    picture: {
+        type: String,
+        allowNull: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,
