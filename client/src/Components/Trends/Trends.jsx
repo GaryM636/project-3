@@ -3,8 +3,8 @@ import React from "react";
 function Trends() {
     return (
         <>
-          <div>
-            <h1>Trends</h1>
+          <div >
+            <h1 className="trend-header">Trends</h1>
           </div>
         </>
     );

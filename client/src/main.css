@@ -6,7 +6,7 @@
 
 h1 {
   padding-top: 50px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .spacer {
@@ -28,51 +28,32 @@ h1 {
 }
 
 .trends-section {
-  min-width: 24vw;
-  display:none;
+  width: calc(40% - 40px);
+  /* Adjusted width to take 40% of the screen minus 40px margin */
+  margin: 20px;
+  /* Added margin */
+  border-radius: 10px;
   background-color: #e5dada;
+  display: block;
+  padding: 20px;
   text-align: center;
-  margin:20px;
-  border-radius: 10px; 
-}
-
-.input {
-  display:none;
-  padding: 5px;
-  border-radius: 28px;
-  background-color: #fff;
-}
-
-#search {
-  display:none;
-  padding: 5px;
-  border-radius: 28px;
-  border: none;
-  font-size: 17px;
-}
-
-button {
-display:none;
-background-color:#840032 ;
-width:15%;
-padding: 15px;
-margin-left: 40px;
-border-radius: 28px;
-border: none;
 }
 
 .aside-menu {
-  width: 24%;
+  width: calc(50% - 40px);
+  /* Adjusted width to take 50% of the screen minus 40px margin */
   background-color: #e5dada;
   color: #000;
-  margin:20px;
+  margin: 20px;
+  /* Added margin */
   border-radius: 10px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .aside-menu ul {
   list-style: none;
-  display:block;
+  display: block;
 }
 
 .aside-menu li {
@@ -96,7 +77,7 @@ border: none;
 }
 
 .aside-menu a:hover {
-  background-color: #000000;
+  background-color: #69022a;
 }
 
 .menu-logo {
@@ -107,25 +88,45 @@ border: none;
 
 .banner {
   padding: 5px;
-  margin: 0px 100px;
+  margin: 0px 5%;
   border: 1px black;
+  max-width: 100%;
 }
-.images{
-  width: 900px;
-  height: 200px;
+
+.images {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
 }
 
 .profile-pic {
   border: #000 solid;
-  margin-left: 800px;
-  margin-right: 100px;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .divider {
   border: #fbaa13 solid;
-  margin: 20px 0px;
+  margin: 20px 0;
+  width: 100%;
 }
-/* mobile responsiveness*/
+
+/* Media query for screens smaller than 576px (phones) */
+@media screen and (max-width: 900px) {
+  .aside-menu {
+    width: calc(25% - 40px);
+    margin: 10px;
+  }
+
+  .trends-section,
+  .trends-header {
+    display: none;
+  }
+
+}
+
+/* Media query for screens larger then or equal to 768px (tablets) */
 @media (min-width: 768px) {
   .aside-menu {
     width: 20vw;
@@ -135,46 +136,8 @@ border: none;
   .center-section {
     flex: 1;
   }
-
-  .trends-section {
-    display: block; /* show on larger screens */
-    width: 24vw;
-    margin: 20px;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #e5dada;
-    text-align: center;
-  }
-
-  #search {
-    display: inline-block;
-  }
-  .input {
-    display: block;
-  }
-
-  button {
-    display: block;
-  }
 }
-
-@media (min-width: 769px) {
-  #search {
-    display: inline-block;
-    width:25%
-  }
-  .input {
-    display: block;
-  }
-
-  button {
-    display: block;
-    margin-left: 50%;
-  }
-}
-
 /* login page css */
-
 .login-container {
   display: flex;
   flex-direction: column;
@@ -190,6 +153,7 @@ border: none;
   border-radius: 5px;
   background-color: #f9f9f9;
   margin-top: 20px;
+  background-color: #e5dada;
 }
 
 .login-title {
@@ -218,7 +182,7 @@ border: none;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #69022a;
 }
 
 .error-message {
@@ -228,7 +192,6 @@ border: none;
 }
 
 /* home-render */
-
 .home-render {
   display: flex;
   flex-wrap: wrap;
