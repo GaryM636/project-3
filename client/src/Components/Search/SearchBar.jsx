@@ -13,17 +13,22 @@ function SearchBar({ onSearch }) {
     };
 
     return (
-        <form className='input' onSubmit={handleSubmit}>
-            <input
-                id='search'
-                name='searchBar'
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={handleChange}
-            />
-            <button type="submit" className="btn fa-solid fa-magnifying-glass"></button>
-        </form>
+        <div className='searchForm'>
+            
+                <form className='input' onSubmit={handleSubmit}>
+                    <input
+                        id='search'
+                        name='searchBar'
+                        type="text"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={handleChange}
+                    />
+                    <button type="submit" className="btn fa-solid fa-magnifying-glass"></button>
+
+                </form>
+        
+        </div>
     );
 }
 
