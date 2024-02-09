@@ -240,3 +240,15 @@ border: none;
   margin: 4%;
   flex-basis: auto;
 }
+
+/* Create Post Button */
+#postCreate {
+  background-color: black;
+  position: fixed;
+  bottom: 5%;
+  left: 90%;
+}
+
+#postCreateBtn {
+  color: white; 
+}

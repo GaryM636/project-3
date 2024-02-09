@@ -6,6 +6,27 @@ const { User, Post, Comment } = require('../models');
 
 module.exports = {
     Query: {
+        me: async (_, __, context) => {
+            if (context.user) {
+                return await User.findById(context.user._id)
+                    .populate({ path: "posts", populate: { path: "userId" } })
+                    .populate("following")
+                    .populate("followers")
+                    .populate(
+                        {
+                            path: 'posts',
+                            populate:
+                            {
+                                path: 'comments',
+                                populate:
+                                {
+                                    path: "userId"
+                                }
+                            }
+                        }
+                    );
+            }
+        },
         getAllUsers: async () => {
             return await User.find({})
                 .populate("posts")
@@ -14,7 +35,7 @@ module.exports = {
         }, // Done
         getUser: async (_, args) => {
             return await User.findById(args.userId)
-                .populate('posts')
+                .populate({ path: "posts", populate: { path: "userId" } })
                 .populate("following")
                 .populate("followers")
                 .populate(
@@ -95,7 +116,7 @@ module.exports = {
         }, // Done
         likePost: async (_, args, context) => {
             if (context.user) {
-                const{ _id, username } = context.user
+                const { _id, username } = context.user
                 return await Post.findByIdAndUpdate(args.postId,
                     { $addToSet: { likes: { userId: _id, username } } },
                     { new: true })
@@ -104,7 +125,7 @@ module.exports = {
         }, // Done
         likeComment: async (_, args, context) => {
             if (context.user) {
-                const{ _id, username } = context.user
+                const { _id, username } = context.user
                 return await Comment.findByIdAndUpdate(args.commentId,
                     { $addToSet: { likes: { userId: _id, username } } },
                     { new: true })
