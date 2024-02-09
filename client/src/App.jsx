@@ -4,10 +4,14 @@ import AsideMenu from './Components/Aside/AsideMenu';
 import Home from './Pages/Home';
 import Discover from './Pages/Page';
 import Trends from './Components/Trends/Trends';
+import Search from './Components/Search/SearchBar';
 import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
 import Login from './Pages/Login';
+
+//css imports
 import './main.css';
+import './Components/Search/searchBar.css'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
@@ -37,6 +41,7 @@ function App() {
           </Routes>
         </div>
         <div className="trends-section">
+          <Search />
           <Trends />
         </div>
       </div>
