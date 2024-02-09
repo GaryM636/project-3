@@ -2,6 +2,7 @@ import React from "react";
 import PostWithImg from "../Components/SinglePost/PostWithImg.jsx";
 import PostWoImg from "../Components/SinglePost/PostWoImg.jsx";
 import PostForm from "../Components/PostForm/index.jsx";
+import PostsList from "../Components/PostsList";
 
 function Home() {
     return (
@@ -12,6 +13,7 @@ function Home() {
 
             <PostWithImg />
             <PostWoImg />
+            <PostsList />
             </div>
         </>
     );
