@@ -228,3 +228,15 @@ border: none;
   font-size: 14px;
 }
 
+/* home-render */
+
+.home-render {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards {
+  margin: 4%;
+  flex-basis: auto;
+}
