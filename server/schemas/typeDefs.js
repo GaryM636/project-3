@@ -61,7 +61,8 @@ module.exports = gql`
         getAllPosts: [Post]
         getPost(postId: ID): Post
         getAllComments: [Comment]
-        getComment(commentId: ID): Comment 
+        getComment(commentId: ID): Comment
+        me: User
     }
 
     type Mutation {

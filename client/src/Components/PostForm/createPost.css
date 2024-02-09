@@ -1,0 +1,14 @@
+#pagetitle {
+    margin-top: 5%;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+#newPost {
+    margin-top: 5%;
+}
+
+#postCard {
+    display: flex;
+    justify-content: space-between;
+}

@@ -22,9 +22,10 @@ query getUser($userId: ID) {
       website
       birthday
     }
+    profilePicture
     posts {
-      _id
       text
+      picture
       userId {
         username
       }
@@ -134,3 +135,49 @@ query GetComment($commentId: ID) {
   }
 }
 `; // Done
+
+// Me
+export const QUERY_ME = gql`
+query Me {
+  me {
+    _id
+    username
+    password
+    email
+    bio {
+      _id
+      text
+      location
+      website
+      birthday
+    }
+    profilePicture
+    posts {
+      _id
+      text
+      picture
+      userId {
+        username
+      }
+      likes {
+        username
+      }
+      comments {
+        text
+        userId {
+          username
+        }
+        likes {
+          username
+        }
+      }
+    }
+    followers {
+      username
+    }
+    following {
+      username
+    }
+  }
+}
+`;
