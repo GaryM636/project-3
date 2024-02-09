@@ -25,6 +25,7 @@ function Home() {
         <>
         {!Auth.loggedIn() && window.location.replace("/login")}
             <h1>HOME</h1>
+          <PostForm />
             <div className="home-render">
                 <PostWithImg />
                 <PostWoImg />
@@ -34,6 +35,10 @@ function Home() {
                         <AddIcon id="postCreateBtn" />
                     </Fab>
                 </Link>
+
+            <PostWithImg />
+            <PostWoImg />
+            <PostsList />
             </div>
         </>
     );
