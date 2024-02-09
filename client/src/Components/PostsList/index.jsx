@@ -1,23 +1,24 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../../utils/queries";
 
-const PostList = ({ posts }) => {
-    const { data } = useQuery(QUERY_POSTS);
+const PostsList = () => {
+    const { data, loading } = useQuery(QUERY_POSTS);
 
-    const post = data?.post || {};
+    const posts = data?.getAllPosts || [];
+    console.log(posts)
 
-    if (!posts.length) {
+    if (loading) {
         return <h3>No Posts Yet</h3>;
     }
 
     return (
       <>
       <div>
-        {posts && posts.map((post) => (
-            <div key={post}>
+        { posts.map((post) => (
+            <div key={post._id}>
                 <div>
                     <h4>{post.text}</h4>
-                    <p>{post.likes}</p>
+                    <p>likes:{post.likes.length}</p>
                 </div>
             </div>
         ))}
@@ -26,4 +27,4 @@ const PostList = ({ posts }) => {
     )
 }
 
-export default PostList;
+export default PostsList;

@@ -7,8 +7,11 @@ const { User, Post, Comment } = require('../models');
 module.exports = {
     Query: {
         getAllUsers: async () => {
-            return await User.find({}).populate("posts").populate("following").populate("followers");
-        }, // Working in sandbox
+            return await User.find({})
+                .populate("posts")
+                .populate("following")
+                .populate("followers")
+        }, // Done
         getUser: async (_, args) => {
             return await User.findById(args.userId)
                 .populate('posts')
@@ -27,7 +30,7 @@ module.exports = {
                         }
                     }
                 );
-        },
+        }, // Done
         getAllPosts: async () => {
             return await Post.find({})
                 .populate('userId')
@@ -40,7 +43,7 @@ module.exports = {
                         }
                     }
                 ); // Working
-        },
+        }, // Done
         getPost: async (_, args) => {
             return await Post.findById(args.postId)
                 .populate('userId')
@@ -50,21 +53,21 @@ module.exports = {
                         populate: { path: "userId" }
                     }
                 ); // Working
-        },
+        }, // Done
         getAllComments: async () => {
             return await Comment.find({}).populate("userId");
-        },
+        }, // Done
         getComment: async (_, args) => {
             return await Comment.findById(args.commentId).populate('userId');
-        }
-    },
+        } // Done
+    }, // Done
     Mutation: {
         createUser: async (_, args) => {
             const user = await User.create(args);
             const token = signToken(user);
 
             return { token, user };
-        }, // Working in sandbox
+        }, // Done
         createPost: async (_, args, context) => {
             if (context.user) {
                 const post = (await Post.create({ ...args, userId: context.user._id }));
@@ -72,7 +75,7 @@ module.exports = {
                 return post.populate("userId")
             }
             throw AuthenticationError
-        }, // Working
+        }, // Done
         createComment: async (_, args, context) => {
             if (context.user) {
                 const comment = await Comment.create({ ...args, userId: context.user._id });
@@ -80,14 +83,41 @@ module.exports = {
                 return comment.populate("postId")
             }
             throw AuthenticationError
-        },
+        }, // Done
+        createBio: async (_, args, context) => {
+            if (context.user) {
+                const bio = await User.findByIdAndUpdate(context.user._id, { $set: { bio: args } }, { new: true })
+                console.log(bio)
+                return bio
+            }
+
+            throw AuthenticationError
+        }, // Done
+        likePost: async (_, args, context) => {
+            if (context.user) {
+                const{ _id, username } = context.user
+                return await Post.findByIdAndUpdate(args.postId,
+                    { $addToSet: { likes: { userId: _id, username } } },
+                    { new: true })
+            }
+            throw AuthenticationError
+        }, // Done
+        likeComment: async (_, args, context) => {
+            if (context.user) {
+                const{ _id, username } = context.user
+                return await Comment.findByIdAndUpdate(args.commentId,
+                    { $addToSet: { likes: { userId: _id, username } } },
+                    { new: true })
+            }
+            throw AuthenticationError
+        }, // Done
         followUser: async (_, args, context) => {
             if (context.user) {
-                await User.findByIdAndUpdate(args.userId, { $push: { followers: context.user._id } }, { new: true } )
+                await User.findByIdAndUpdate(args.userId, { $push: { followers: context.user._id } }, { new: true })
                 return await User.findByIdAndUpdate(context.user._id, { $push: { following: args.userId } }, { new: true })
             }
             throw AuthenticationError
-        },
+        }, // Done
         login: async (_, { email, password }) => {
             const user = await User.findOne({ email });
 
@@ -104,6 +134,6 @@ module.exports = {
             const token = signToken(user);
 
             return { token, user };
-        } // Working
-    }
+        } // Done
+    } // Done
 };

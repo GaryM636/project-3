@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const dateFormat = require('../utils/dateFormat');
+const BioSchema = require('./Bio');
 
 
 const UserSchema = new Schema({
@@ -22,13 +23,12 @@ const UserSchema = new Schema({
             'This is not a valid email']
     },
     bio: {
-        type: String,
-        maxlength: 60,
+        type: BioSchema,
+        default: () => ({}) 
     },
-    birthday: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
+    profilePicture: {
+        type: String,
+        allowNull: true
     },
     posts: [{
         type: Schema.Types.ObjectId,
@@ -63,6 +63,9 @@ UserSchema.pre('save', async function(next) {
   UserSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
   };
+
+
+
 
 const User = model('User', UserSchema);
 
