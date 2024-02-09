@@ -4,8 +4,8 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function BottomNav() {
-  const [value, setValue] = React.useState('recents');
+export default function BottomNav({ setIsCommentActive, isCommentActive}) {
+  const [value, setValue] = React.useState('comments');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -22,6 +22,7 @@ export default function BottomNav() {
         label="Add Comment"
         value="add comment"
         icon={<AddCommentIcon />}
+        onClick={() => setIsCommentActive(!isCommentActive)}
       />
     </BottomNavigation>
   );
