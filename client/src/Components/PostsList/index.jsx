@@ -18,7 +18,11 @@ const PostsList = () => {
             <div key={post._id}>
                 <div>
                     <h4>{post.text}</h4>
-                    <p>likes:{post.likes.length}</p>
+                    <p>likes:
+                        {post.likes.map((like) => {
+                            <span key={like._id}>{like.username}</span>
+                        })}
+                        </p>
                 </div>
             </div>
         ))}
