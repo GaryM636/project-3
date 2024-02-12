@@ -11,11 +11,11 @@ import AsideMenu from './Components/Aside/AsideMenu';
 import Home from './Pages/Home';
 import Discover from './Pages/Page';
 import Trends from './Components/Trends/Trends';
-import Search from './Components/Search/SearchBar';
+// import Search from './Components/Search/SearchBar';
 import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
 import Login from './Pages/Login';
-import CreatePost from './Components/PostForm/newPost'
+import CreatePost from './Components/CreatePost/newPost'
 //css imports
 import './main.css';
 import './Components/Search/searchBar.css'

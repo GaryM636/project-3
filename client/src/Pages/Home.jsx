@@ -2,6 +2,7 @@ import React from "react";
 import PostsList from "../Components/PostsList/index.jsx"
 import PostWithImg from "../Components/SinglePost/PostWithImg.jsx";
 import PostWoImg from "../Components/SinglePost/PostWoImg.jsx";
+// import CreatePost from '../Components/CreatePost/newPost.jsx';
 import { Link } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -25,7 +26,7 @@ function Home() {
         <>
         {!Auth.loggedIn() && window.location.replace("/login")}
             <h1>HOME</h1>
-          <PostForm />
+          {/* <CreatePost /> */}
             <div className="home-render">
                 <PostWithImg />
                 <PostWoImg />
