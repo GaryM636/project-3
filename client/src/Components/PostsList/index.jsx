@@ -7,8 +7,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import BottomNav from '../PostBottomNav/index.jsx';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import CommentForm from '../CommentForm/index.jsx';
 
 const PostsList = () => {
+  const [ isCommentActive, setIsCommentActive ] = React.useState( false );
+
     const { data, loading } = useQuery(QUERY_POSTS);
 
     const posts = data?.getAllPosts || [];
@@ -21,16 +27,32 @@ const PostsList = () => {
     return (
       <>
         { posts.map((post) => (
-         <Card className='cards' key={post._id}>
-         <CardContent>
-           <Typography variant="body2" color="text.secondary">
-             {post.text}
-           </Typography>
-         </CardContent>
-         <CardActions className='card-actions'>
-           <BottomNav />
-         </CardActions>
-       </Card>
+          <Card className='cards' key={post._id} sx={{
+            minWidth: 1,
+          }}>
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+        {post.text}
+        </Typography>
+      </CardContent>
+      <CardActions className='card-actions'>
+        <BottomNav setIsCommentActive={setIsCommentActive} isCommentActive={isCommentActive}/>
+      </CardActions>
+      <Accordion expanded={isCommentActive}>
+        <AccordionSummary
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography>Comments</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <CommentForm />
+          <Typography>
+            {/* this is where we need to render comments */}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </Card>
         ))}
       </>
     )

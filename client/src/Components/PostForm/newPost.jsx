@@ -39,7 +39,7 @@ export default function CreatePost() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xl">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -52,8 +52,8 @@ export default function CreatePost() {
                     <Typography component="h1" variant="h5">
                         Create new post:
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: "877px" }}>
-                        <Grid container maxWidth="md" spacing={2}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: 1 }}>
+                        <Grid container maxWidth="xl" spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
                                     multiline={true}
