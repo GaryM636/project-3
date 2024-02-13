@@ -61,6 +61,7 @@ query getAllPosts {
     picture
     createdAt
     userId {
+      _id
       username
     }
     likes {
