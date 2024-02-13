@@ -7,21 +7,19 @@ import ProfileImg from '../Components/Images/ProfileImages';
 import InfoBody from '../Components/InfoBody';
 import Auth from '../utils/auth';
 
+import Box from '@mui/material/Box';
+
 const Profile = () => {
-    const userId = Auth.getProfile().data._id
-    console.log("Profile userId: ", userId);
+    const userId = Auth.getProfile().data._id;
     
-
     const { data } = useQuery(QUERY_ME, { fetchPolicy: "cache-and-network" });
-    console.log("profile data: ", data);
 
-    const user = data?.Me || {};
-    console.log("Profile user: ", user);
+    const user = data?.me || {};
 
     return (
         <>
         <ProfileImg />
-        <InfoBody userId={userId} />
+        <InfoBody user={user} />
         </>
     );
 }

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -22,9 +21,7 @@ export default function CreatePost() {
     const navigate = useNavigate();
     const location = useLocation();
     const { state } = location;
-    console.log("New post LOCATION: ", location);
     const { userId } = state;
-    console.log("New post STATE: ", state)
     const [text, setText] = useState("");
     const [addPost, { error }] = useMutation(CREATE_POST);
     const handleSubmit = async (event) => {
