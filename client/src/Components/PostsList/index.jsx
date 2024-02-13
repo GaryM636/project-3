@@ -1,29 +1,36 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../../utils/queries";
 
+
+
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import BottomNav from '../PostBottomNav/index.jsx';
+import Box from '@mui/material/Box';
+import CommentForm from '../CommentForm/index.jsx';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import CommentForm from '../CommentForm/index.jsx';
+import Auth from '../../utils/auth';
+
+import '../PostsList/post.css';
+
 
 const PostsList = () => {
+  const userId = Auth.getProfile().data._id
   const [isCommentActive, setIsCommentActive] = React.useState(false);
 
-  const { data, loading } = useQuery(QUERY_POSTS, {fetchPolicy: "cache-and-network"});
+  const { data, loading } = useQuery(QUERY_POSTS, { fetchPolicy: "cache-and-network" });
 
+    const posts = data?.getAllPosts || [];
+    console.log(posts)
 
-  const posts = data?.getAllPosts || [];
-  console.log(posts)
-
-  if (loading) {
-    return <h3>No Posts Yet</h3>;
-  }
+    if (loading) {
+        return <h3>No Posts Yet</h3>;
+    }
 
   return (
     <>
@@ -32,13 +39,13 @@ const PostsList = () => {
           minWidth: 1,
         }}>
           <CardContent>
-            <Typography sx={{textAlign: "left", fontWeight: "800"}} variant="body2" color="text.secondary">
+            <Typography sx={{ textAlign: "left", fontWeight: "800" }} variant="body2" color="text.secondary">
               {post.userId.username}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {post.text}
             </Typography>
-            <Typography sx={{textAlign: "right", fontWeight: "400"}} variant="body2" color="text.secondary">
+            <Typography sx={{ textAlign: "right", fontWeight: "400" }} variant="body2" color="text.secondary">
               {post.createdAt}
             </Typography>
           </CardContent>
@@ -53,8 +60,16 @@ const PostsList = () => {
               <Typography>Comments</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <CommentForm />
+              <CommentForm postId={post._id} userId={userId} />
               <Typography>
+                {post.comments.map((comment) => (
+                  <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                   <Typography>{comment.userId.username}</Typography>
+                  <Typography key={comment._id}>{comment.text} </Typography>
+                  <Typography>{comment.createdAt}</Typography>
+                  </Box>
+                 
+                ))}
                 {/* this is where we need to render comments */}
               </Typography>
             </AccordionDetails>
@@ -64,5 +79,6 @@ const PostsList = () => {
     </>
   )
 }
+
 
 export default PostsList;
