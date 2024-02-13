@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AsideMenu from './Components/Aside/AsideMenu';
 import Home from './Pages/Home';
 import Trends from './Components/Trends/Trends';
-import viewUserProfile from './Pages/User';
 // import Search from './Components/Search/SearchBar';
 import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';

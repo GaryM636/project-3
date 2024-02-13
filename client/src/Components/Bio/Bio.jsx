@@ -9,7 +9,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
-import BioForm from './index';
+// import BioForm from './index';
 
 function BioLayout() {
     const userId = Auth.getProfile().data._id
