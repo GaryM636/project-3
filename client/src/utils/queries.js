@@ -59,6 +59,7 @@ query getAllPosts {
     _id
     text
     picture
+    createdAt
     userId {
       username
     }
@@ -68,6 +69,7 @@ query getAllPosts {
     comments {
       _id
       text
+      createdAt
       userId {
         username
       }

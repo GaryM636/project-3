@@ -19,6 +19,7 @@ module.exports = gql`
         text: String
         picture: String
         userId: User
+        createdAt: String
         likes: [PostLikes]
         comments: [Comment]
     }
@@ -33,6 +34,7 @@ module.exports = gql`
         _id: ID
         text: String
         userId: User
+        createdAt: String
         likes: [CommentLikes]
     }
 
