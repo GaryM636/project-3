@@ -1,6 +1,6 @@
 
   .trends-section {
-    width: calc(40% - 40px);
+    width: calc(25% - 40px);
     /* Adjusted width to take 40% of the screen minus 40px margin */
     margin: 20px;
     /* Added margin */
@@ -17,6 +17,4 @@
     .trends-header {
       display: none;
     }
-  
-  
   }
