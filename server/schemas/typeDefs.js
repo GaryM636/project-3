@@ -64,6 +64,8 @@ module.exports = gql`
         getAllComments: [Comment]
         getComment(commentId: ID): Comment
         me: User
+        getUserMessages: [Message]
+
     }
 
     type Mutation {
@@ -75,5 +77,14 @@ module.exports = gql`
         likeComment(commentId: ID!): Comment
         followUser(userId: ID!): User
         login(email: String!, password: String!): Auth 
+        sendMessage(text: String!, receiverUsername: String! ) : Message
+    }
+
+    type Message {
+        _id: ID
+        text: String!
+        createdAt: String
+        senderUsername: String!
+        receiverUsername: String!
     }
 `;

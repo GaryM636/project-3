@@ -27,6 +27,19 @@ module.exports = {
                     );
             }
         },
+
+        getUserMessages: async (_, args, context) => {
+            if (context.user) {
+                console.log("current user", context.user);
+                console.log("getting messages for user", context.user);
+                // const messages = await Message.find({})
+                const messages = await Message.find({$or:[{senderUsername: context.user.username}, {receiverUsername: context.user.username}] })
+                console.log(messages);
+                return messages
+            }
+            throw AuthenticationError
+        },
+
         getAllUsers: async () => {
             return await User.find({})
                 .populate("posts")
@@ -84,11 +97,24 @@ module.exports = {
     }, // Done
     Mutation: {
         createUser: async (_, args) => {
-            const user = await User.create(args);
-            const token = signToken(user);
+            await User.init()
+            const newUser = new User(args)
+            const user = await newUser.save()
+            const token = signToken(newUser);
 
             return { token, user };
-        }, // Done
+        }, // Working in sandbox
+        
+        sendMessage: async (_, { text, receiverUsername }, context) => {
+            if (context.user) {
+                console.log("logged in user", context.user);
+                const message = await Message.create({ text, receiverUsername, senderUsername: context.user.username })
+                return message
+            }
+            throw AuthenticationError
+        },
+
+        // Done
         createPost: async (_, args, context) => {
             if (context.user) {
                 const post = (await Post.create({ ...args, userId: context.user._id }));
