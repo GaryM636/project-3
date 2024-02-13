@@ -21,33 +21,6 @@ h1 {
   min-height: 100vh;
 }
 
-.banner {
-  padding: 5px;
-  margin: 0px 5%;
-  border: 1px black;
-  max-width: 100%;
-  margin-top: 10%;
-}
-
-.images {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-}
-
-.profile-pic {
-  border: #000 solid;
-  margin: 20px auto;
-  max-width: 100%;
-  height: auto;
-}
-
-.divider {
-  border: #fbaa13 solid;
-  margin: 20px 0;
-  width: 100%;
-}
-
 /* Media query for screens smaller than 576px (phones) */
 @media screen and (max-width: 900px) {
 
