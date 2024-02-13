@@ -11,6 +11,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import CommentForm from '../CommentForm/index.jsx';
+import { Box } from "@mui/material";
 
 const PostsList = () => {
   const [isCommentActive, setIsCommentActive] = React.useState(false);
@@ -32,14 +33,16 @@ const PostsList = () => {
           minWidth: 1,
         }}>
           <CardContent>
-            <Typography sx={{textAlign: "left", fontWeight: "800"}} variant="body2" color="text.secondary">
+            <Box sx={{display: "flex", justifyContent: "space-between"}}>
+            <Typography sx={{ fontWeight: "800"}} variant="body2" color="text.secondary">
               {post.userId.username}
             </Typography>
+            <Typography sx={{ fontWeight: "400"}} variant="body2" color="text.secondary">
+              {post.createdAt}
+            </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               {post.text}
-            </Typography>
-            <Typography sx={{textAlign: "right", fontWeight: "400"}} variant="body2" color="text.secondary">
-              {post.createdAt}
             </Typography>
           </CardContent>
           <CardActions className='card-actions'>
