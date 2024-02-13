@@ -1,17 +1,20 @@
-import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { useLocation } from 'react-router-dom';
 import PostsList from '../Components/PostsList';
 
 import { QUERY_USER } from '../utils/queries';
 
 const User = () => {
-    const { userId } = useParams();
+    const location = useLocation();
+    const { state } = location;
+    const { userId } = state;
+    console.log("Location: ", location)
+    console.log("State: ", state)
 
-    const { data } = useQuery(QUERY_USER, {
-        variables: { userId: userId },
-    });
+    const { data, loading } = useQuery(QUERY_USER);
 
     const user = data?.user || {};
+    console.log("User: ", user)
 
     return (
     <>

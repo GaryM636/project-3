@@ -22,7 +22,9 @@ export default function CreatePost() {
     const navigate = useNavigate();
     const location = useLocation();
     const { state } = location;
+    console.log("New post LOCATION: ", location);
     const { userId } = state;
+    console.log("New post STATE: ", state)
     const [text, setText] = useState("");
     const [addPost, { error }] = useMutation(CREATE_POST);
     const handleSubmit = async (event) => {
@@ -53,7 +55,7 @@ export default function CreatePost() {
                     <Typography component="h1" variant="h5">
                         Create new post:
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: "877px" }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: "610px" }}>
                         <Grid container maxWidth="md" spacing={2}>
                             <Grid item xs={12}>
                                 <TextField

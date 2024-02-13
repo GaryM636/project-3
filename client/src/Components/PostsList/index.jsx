@@ -3,7 +3,7 @@ import { QUERY_POSTS, QUERY_COMMENTS } from "../../utils/queries";
 import { CREATE_COMMENT } from "../../utils/mutations.js";
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+
 
 import * as React from 'react';
 import Card from '@mui/material/Card';
@@ -18,31 +18,25 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-// import CommentForm from '../CommentForm/index.jsx';
+import Auth from '../../utils/auth';
 
 import '../PostsList/post.css';
 
 const PostsList = () => {
-  const location = useLocation();
-  const { state } = location;
-  console.log("Location: ", location);
-  // const { userId } = state;
-  console.log("State: ", state)
-
+  const userId = Auth.getProfile().data._id
+  console.log("userId on postList: ",  userId)
+  
   const { data, loading } = useQuery(QUERY_POSTS);
-  const { data: commentData, loading: commentLoading } = useQuery(QUERY_COMMENTS)
   const [text, setText] = useState("");
   const [addComment, { error }] = useMutation(CREATE_COMMENT);
 
   const posts = data?.getAllPosts || [];
-  const comments = commentData?.getAllComments || [];
-  console.log("Comments: ", comments);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await addComment({
-        variables: { text }
+        variables: { text, userId, postId }
       })
       setText('');
     } catch (err) {
@@ -52,10 +46,6 @@ const PostsList = () => {
 
   if (loading) {
     return <h3>No Posts Yet</h3>;
-  }
-
-  if (commentLoading) {
-    return <div>No Comments Yet...</div>
   }
 
   return (
@@ -80,7 +70,7 @@ const PostsList = () => {
                 <Typography>Comments</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: "525px" }}>
+                <Box component="form" noValidate onSubmit={() => handleSubmit(post._id)} sx={{ mt: 3, width: "525px" }}>
                   <Grid container maxWidth="md" spacing={2}>
                     <Grid item xs={12}>
                       <TextField
@@ -105,6 +95,7 @@ const PostsList = () => {
                       Create
                     </Button>
                   </Grid>
+                  {/* Comment Grid */}
                   {post.comments.map((comment) => (
                     <Grid container maxWidth="md" spacing={2} key={comment._id}>
                     <Grid item xs={12} sx={{ mt: 3 }}>
@@ -118,8 +109,7 @@ const PostsList = () => {
                   ))}
                 </Box>
               </AccordionDetails>
-            </Accordion>
-          
+            </Accordion> 
         </Card >
       ))}
     </>

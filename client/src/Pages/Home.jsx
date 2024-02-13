@@ -12,16 +12,16 @@ import Auth from '../utils/auth';
 
 
 function Home() {
-    const { data, loading, error } = useQuery(QUERY_ME);
-    const userData = data?.me || {};
+    // const { data, loading, error } = useQuery(QUERY_ME);
+    // const userData = data?.me || {};
 
-    if (error) {
-        <div>{error.message}</div>
-    }
+    // if (error) {
+    //     <div>{error.message}</div>
+    // }
 
-    if (loading) {
-        <div>Loading....</div>
-    }
+    // if (loading) {
+    //     <div>Loading....</div>
+    // }
     return (
         <>
         {!Auth.loggedIn() && window.location.replace("/login")}
@@ -31,7 +31,7 @@ function Home() {
                 <PostWithImg />
                 <PostWoImg />
                 <PostsList />
-                <Link to="/createPost" state = {{userId: userData._id }}>
+                <Link to="/createPost"  state = {{userId: Auth.getProfile().data._id }}>
                     <Fab id="postCreate" color="primary" aria-label="add">
                         <AddIcon id="postCreateBtn" />
                     </Fab>
