@@ -1,4 +1,40 @@
+/* Edit bio section */
 #title {
     margin-top: 5%;
     text-decoration: underline;
+}
+
+#editBio {
+    position: fixed;
+    bottom: 5%;
+    right: 40%;
+}
+
+/* Bio section */
+#username {
+    font-weight: bolder;
+    /* display: flex; */
+    justify-content: start;
+    top: 0;
+}
+
+#bioList {
+    margin-top: 2%;
+    padding: 1%;
+    width: 105%;
+    float: left;
+    font-weight: bold;
+    font-size: larger;
+    list-style-type: none;
+}
+
+.listData {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    padding: 1%;
+}
+
+#linkTag {
+    text-decoration: none;
 }

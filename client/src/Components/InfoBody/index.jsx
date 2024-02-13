@@ -6,8 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import PostsList from '../PostsList';
-import BioLayout from '../Bio/Bio.jsx';
-import BioForm from '../Bio/index';
+import BioLayout from '../Bio/Bio';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
