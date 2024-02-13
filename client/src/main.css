@@ -14,76 +14,11 @@ h1 {
   justify-content: space-between;
 }
 
-.aside-menu {
-  min-width: 20vw;
-  background-color: #f0f0f0;
-  text-align: center;
-}
-
 .center-section {
   flex: 1;
   background-color: #ffffff;
   text-align: center;
   min-height: 100vh;
-}
-
-.trends-section {
-  width: calc(40% - 40px);
-  /* Adjusted width to take 40% of the screen minus 40px margin */
-  margin: 20px;
-  /* Added margin */
-  border-radius: 10px;
-  background-color: #e5dada;
-  display: block;
-  padding: 20px;
-  text-align: center;
-}
-
-.aside-menu {
-  width: calc(50% - 40px);
-  /* Adjusted width to take 50% of the screen minus 40px margin */
-  background-color: #e5dada;
-  color: #000;
-  margin: 20px;
-  /* Added margin */
-  border-radius: 10px;
-  box-sizing: border-box;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.aside-menu ul {
-  list-style: none;
-  display: block;
-}
-
-.aside-menu li {
-  margin-bottom: 10px;
-  background-color: #002642;
-}
-
-.aside-menu a {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  text-align: left;
-}
-
-.aside-menu a i {
-  margin-right: 15px;
-}
-
-.aside-menu a:hover {
-  background-color: #69022a;
-}
-
-.menu-logo {
-  max-height: 55px;
-  margin-top: 20px;
-  display: flex;
 }
 
 .banner {
@@ -115,15 +50,6 @@ h1 {
 
 /* Media query for screens smaller than 576px (phones) */
 @media screen and (max-width: 900px) {
-  .aside-menu {
-    width: calc(25% - 40px);
-    margin: 10px;
-  }
-
-  .trends-section,
-  .trends-header {
-    display: none;
-  }
 
   .center-section {
     margin-right: 2%;
@@ -133,10 +59,6 @@ h1 {
 
 /* Media query for screens larger then or equal to 768px (tablets) */
 @media (min-width: 768px) {
-  .aside-menu {
-    width: 20vw;
-    margin: 20px;
-  }
 
   .center-section {
     flex: 1;
