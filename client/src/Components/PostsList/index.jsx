@@ -25,8 +25,11 @@ const PostsList = () => {
 
   const { data, loading } = useQuery(QUERY_POSTS, { fetchPolicy: "cache-and-network" });
 
-  const posts = data?.getAllPosts || [];
-  console.log(posts)
+    const posts = data?.getAllPosts || [];
+  
+
+
+    
 
   if (loading) {
     return <h3>No Posts Yet</h3>;

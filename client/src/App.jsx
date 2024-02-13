@@ -16,6 +16,7 @@ import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
 import Login from './Pages/Login';
 import CreatePost from './Components/CreatePost/newPost'
+import BioForm  from './Components/Bio/index';
 import Profile from './Pages/Profile';
 //css imports
 import './main.css';
@@ -71,6 +72,7 @@ function App() {
               <Route path="/users/:userId" element={<User />} />
               <Route path="/login" element={<Login handleLogin={handleLogin} />} />
               <Route path="/createPost" element={<CreatePost />} />
+              <Route path="/editBio" element={<BioForm/> } />
             </Routes>
           </div>
           <div className="trends-section">
