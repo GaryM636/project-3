@@ -16,6 +16,7 @@ import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
 import Login from './Pages/Login';
 import CreatePost from './Components/CreatePost/newPost'
+import Profile from './Pages/Profile';
 //css imports
 import './main.css';
 import './Components/Search/searchBar.css'
@@ -61,7 +62,7 @@ function App() {
           </div>
           <div className='center-section'>
             <Routes>
-              <Route path="/profile" element={<Images />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/" element={<Home />} />
               <Route path="/discover" element={<Discover />} />
               <Route path="/users/:userId" element={<User />} />

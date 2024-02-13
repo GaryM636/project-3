@@ -91,6 +91,7 @@ h1 {
   margin: 0px 5%;
   border: 1px black;
   max-width: 100%;
+  margin-top: 10%;
 }
 
 .images {
@@ -122,6 +123,10 @@ h1 {
   .trends-section,
   .trends-header {
     display: none;
+  }
+
+  .center-section {
+    margin-right: 2%;
   }
 
 }
