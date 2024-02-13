@@ -14,7 +14,7 @@ export default function PostWoImg() {
           species, ranging across all continents except Antarctica
         </Typography>
       </CardContent>
-      <CardActions className='card-actions'>
+      <CardActions id="WhereIsThis" className='card-actions'>
         <BottomNav />
       </CardActions>
     </Card>

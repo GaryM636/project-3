@@ -34,6 +34,7 @@ module.exports = gql`
         _id: ID
         text: String
         userId: User
+        createdAt: String
         likes: [CommentLikes]
     }
 

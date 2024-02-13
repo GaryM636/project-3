@@ -28,7 +28,7 @@ export default function PostWithImg() {
         image="/static/images/cards/contemplative-reptile.jpg"
       />
       </div>
-      <CardActions className='card-actions'>
+      <CardActions id="LookingForComments" className='card-actions'>
         <BottomNav setIsCommentActive={setIsCommentActive} isCommentActive={isCommentActive}/>
       </CardActions>
       <Accordion expanded={isCommentActive}>

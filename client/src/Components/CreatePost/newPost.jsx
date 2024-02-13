@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREATE_POST } from '../../utils/mutations';
@@ -21,7 +22,9 @@ export default function CreatePost() {
     const navigate = useNavigate();
     const location = useLocation();
     const { state } = location;
+    console.log("New post LOCATION: ", location);
     const { userId } = state;
+    console.log("New post STATE: ", state)
     const [text, setText] = useState("");
     const [addPost, { error }] = useMutation(CREATE_POST);
     const handleSubmit = async (event) => {
