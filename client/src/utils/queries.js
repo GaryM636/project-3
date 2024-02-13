@@ -59,6 +59,7 @@ query getAllPosts {
     _id
     text
     picture
+    createdAt
     userId {
       username
     }
