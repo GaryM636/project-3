@@ -82,3 +82,15 @@ mutation login($email: String!, $password: String!) {
   }
 }
 `; // Good
+
+export const SEND_MESSAGE=gql`
+mutation Mutation($text: String!, $receiverUsername: String!) {
+  sendMessage(text: $text, receiverUsername: $receiverUsername) {
+    _id
+    text
+    createdAt
+    senderUsername
+    receiverUsername
+  }
+}
+`;
