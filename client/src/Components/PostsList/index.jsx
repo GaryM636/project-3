@@ -25,12 +25,12 @@ const PostsList = () => {
 
   const { data, loading } = useQuery(QUERY_POSTS, { fetchPolicy: "cache-and-network" });
 
-    const posts = data?.getAllPosts || [];
-    console.log(posts)
+  const posts = data?.getAllPosts || [];
+  console.log(posts)
 
-    if (loading) {
-        return <h3>No Posts Yet</h3>;
-    }
+  if (loading) {
+    return <h3>No Posts Yet</h3>;
+  }
 
   return (
     <>
@@ -39,14 +39,16 @@ const PostsList = () => {
           minWidth: 1,
         }}>
           <CardContent>
-            <Typography sx={{ textAlign: "left", fontWeight: "800" }} variant="body2" color="text.secondary">
-              {post.userId.username}
-            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">
+                {post.userId.username}
+              </Typography>
+              <Typography sx={{ fontWeight: "400" }} variant="body2" color="text.secondary">
+                {post.createdAt}
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               {post.text}
-            </Typography>
-            <Typography sx={{ textAlign: "right", fontWeight: "400" }} variant="body2" color="text.secondary">
-              {post.createdAt}
             </Typography>
           </CardContent>
           <CardActions className='card-actions'>
@@ -63,14 +65,19 @@ const PostsList = () => {
               <CommentForm postId={post._id} userId={userId} />
               <Typography>
                 {post.comments.map((comment) => (
-                  <Box sx={{display: "flex", justifyContent: "space-between"}}>
-                   <Typography>{comment.userId.username}</Typography>
-                  <Typography key={comment._id}>{comment.text} </Typography>
-                  <Typography>{comment.createdAt}</Typography>
+                  <Box key={comment._id} sx={{
+                    border: "1px solid #d3d3d3",
+                    borderRadius: "3px",
+                    padding: "5px",
+                    marginBottom: "5px",
+                  }}>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
+                      <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">{comment.userId.username}</Typography>
+                      <Typography sx={{ fontWeight: "400" }} variant="body2" color="text.secondary">{comment.createdAt}</Typography>
+                    </Box>
+                    <Typography key={comment._id}>{comment.text} </Typography>
                   </Box>
-                 
                 ))}
-                {/* this is where we need to render comments */}
               </Typography>
             </AccordionDetails>
           </Accordion>
