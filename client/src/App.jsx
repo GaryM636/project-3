@@ -21,6 +21,9 @@ import Profile from './Pages/Profile';
 //css imports
 import './main.css';
 import './Components/Search/searchBar.css'
+import './Components/Trends/trends.css'
+import './Components/Aside/aside-menu.css'
+import './Components/Images/images.css'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
