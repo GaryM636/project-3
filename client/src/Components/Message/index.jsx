@@ -1,41 +1,48 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_MESSAGES } from "../../utils/queries.js";
 import Auth from "../../utils/auth.js";
 
+
 const Messages = () => {
   const { loading, error, data } = useQuery(GET_MESSAGES, {
-    variables: { userId: Auth.getProfile().data._id },
-    // pollInterval: 10000,
+    // variables: { userId: Auth.getProfile().data._id },
+    pollInterval: 10000,
   });
   console.log(data);
+
+  const [conversations, setConversations] = useState([])
+  console.log("conversations", conversations);
 
   useEffect(() => {
     if (data) {
       const mergeConversations = (messages) => {
-        const conversations = {};
+        const conversations = [];
 
         messages.forEach(({ senderUsername, receiverUsername, ...message }) => {
           // Determine the conversation key by sorting sender and receiver usernames alphabetically
-          const conversationKey = [senderUsername, receiverUsername]
+          const conversationKey = [receiverUsername, senderUsername ]
             .sort()
             .join("-");
-          console.log(conversationKey);
+    
           // Initialize an array for the conversation if it doesn't exist
           if (!conversations[conversationKey]) {
             conversations[conversationKey] = [];
           }
 
           // Add the message to the conversation array
-          conversations[conversationKey].push({ senderUsername, ...message });
+          conversations[conversationKey].push({ receiverUsername, senderUsername, ...message });
         });
 
         return conversations;
       };
 
       const mergedConversations = mergeConversations(data.getUserMessages);
+      setConversations(mergedConversations)
       console.log(mergedConversations);
+
+  
     }
   }, [data]);
 
@@ -44,13 +51,26 @@ const Messages = () => {
 
   return (
     <div>
-      {/* <h2>Message</h2>
-      <ul>
-        {messages.map((message) => (
-          <li key={message.id}>{message.text}</li>
-        ))}
-      </ul> */}
+      <h2>Messages</h2>
+      {Object.entries(conversations).map(([conversationKey, messages]) => (
+        <div key={conversationKey}>
+          <h2>{conversationKey}</h2>
+          <ul>
+            {messages.map((message, index) => (
+              <li key={index}>
+                <p>Sender: {message.senderUsername}</p>
+                <p>Receiver: {message.receiverUsername}</p>
+                <p>Message: {message.text}</p>
+                <p>Sent: {message.createdAt}</p><br/>
+              </li>
+              
+            ))}
+          </ul>
+        </div>
+      ))}
+    
     </div>
+ 
   );
 };
 

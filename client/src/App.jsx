@@ -17,6 +17,7 @@ import User from './Pages/User';
 import Login from './Pages/Login';
 import CreatePost from './Components/PostForm/newPost'
 import Profile from './Pages/Profile';
+import Messages from './Components/Message'
 //css imports
 import './main.css';
 import './Components/Search/searchBar.css'
@@ -68,6 +69,7 @@ function App() {
               <Route path="/users/:userId" element={<User />} />
               <Route path="/login" element={<Login handleLogin={handleLogin} />} />
               <Route path="/createPost" element={<CreatePost />} />
+              <Route path="/messages" element={<Messages />} />
             </Routes>
           </div>
           <div className="trends-section">

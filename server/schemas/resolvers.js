@@ -1,6 +1,6 @@
 const { AuthenticationError, signToken } = require('../utils/auth');
 
-const { User, Post, Comment } = require('../models');
+const { User, Post, Comment, Message } = require('../models');
 
 
 

@@ -56,6 +56,14 @@ module.exports = gql`
         user: User
     }
 
+    type Message {
+        _id: ID
+        text: String!
+        createdAt: String
+        senderUsername: String!
+        receiverUsername: String!
+    }
+    
     type Query {
         getAllUsers: [User]
         getUser(userId: ID): User
@@ -77,14 +85,8 @@ module.exports = gql`
         likeComment(commentId: ID!): Comment
         followUser(userId: ID!): User
         login(email: String!, password: String!): Auth 
-        sendMessage(text: String!, receiverUsername: String! ) : Message
+        sendMessage(text: String!, receiverUsername: String! ): Message
     }
 
-    type Message {
-        _id: ID
-        text: String!
-        createdAt: String
-        senderUsername: String!
-        receiverUsername: String!
-    }
+
 `;
