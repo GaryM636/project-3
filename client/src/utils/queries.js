@@ -69,6 +69,7 @@ query getAllPosts {
     comments {
       _id
       text
+      createdAt
       userId {
         username
       }
