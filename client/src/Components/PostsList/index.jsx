@@ -15,6 +15,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
+
 
 import '../PostsList/post.css';
 
@@ -43,9 +45,11 @@ const PostsList = () => {
         }}>
           <CardContent>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+
               <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">
-                {post.userId.username}
+                <Link to={`/users/${post.userId._id}`}> {post.userId.username} </Link>
               </Typography>
+
               <Typography sx={{ fontWeight: "400" }} variant="body2" color="text.secondary">
                 {post.createdAt}
               </Typography>
@@ -75,7 +79,9 @@ const PostsList = () => {
                     marginBottom: "5px",
                   }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
-                      <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">{comment.userId.username}</Typography>
+                      <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">
+                        <Link to={`/users/${comment.userId._id}`}>{comment.userId.username}</Link>
+                      </Typography>
                       <Typography sx={{ fontWeight: "400" }} variant="body2" color="text.secondary">{comment.createdAt}</Typography>
                     </Box>
                     <Typography key={comment._id}>{comment.text} </Typography>
