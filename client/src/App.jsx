@@ -9,8 +9,8 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AsideMenu from './Components/Aside/AsideMenu';
 import Home from './Pages/Home';
-import Discover from './Pages/Page';
 import Trends from './Components/Trends/Trends';
+import viewUserProfile from './Pages/User';
 // import Search from './Components/Search/SearchBar';
 import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
@@ -68,10 +68,10 @@ function App() {
             <Routes>
               <Route path="/profile" element={<Profile />} />
               <Route path="/" element={<Home />} />
-              <Route path="/discover" element={<Discover />} />
               <Route path="/users/:userId" element={<User />} />
               <Route path="/login" element={<Login handleLogin={handleLogin} />} />
               <Route path="/createPost" element={<CreatePost />} />
+              <Route path="/users/:userId" element={<viewUserProfile />} />
               <Route path="/editBio" element={<BioForm/> } />
             </Routes>
           </div>
