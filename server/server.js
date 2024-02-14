@@ -30,13 +30,6 @@ const PORT = process.env.PORT || 3003;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Add a route for handling file uploads
-app.post('/upload', upload.single('file'), (req, res) => {
-  // File uploaded successfully
-  const fileName = req.file.filename;
-  res.json({ fileName: fileName, filePath: '/uploads/' + fileName });
-});
-
 const db = require('./config/connection');
 
 const startApolloServer = async () => {
