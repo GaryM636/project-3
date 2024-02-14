@@ -9,17 +9,20 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AsideMenu from './Components/Aside/AsideMenu';
 import Home from './Pages/Home';
-import Discover from './Pages/Page';
 import Trends from './Components/Trends/Trends';
-import Search from './Components/Search/SearchBar';
+// import Search from './Components/Search/SearchBar';
 import Images from './Components/Images/ProfileImages';
 import User from './Pages/User';
 import Login from './Pages/Login';
-import CreatePost from './Components/PostForm/newPost'
+import CreatePost from './Components/CreatePost/newPost'
+import BioForm  from './Components/Bio/index';
 import Profile from './Pages/Profile';
 //css imports
 import './main.css';
 import './Components/Search/searchBar.css'
+import './Components/Trends/trends.css'
+import './Components/Aside/aside-menu.css'
+import './Components/Images/images.css'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -64,10 +67,11 @@ function App() {
             <Routes>
               <Route path="/profile" element={<Profile />} />
               <Route path="/" element={<Home />} />
-              <Route path="/discover" element={<Discover />} />
               <Route path="/users/:userId" element={<User />} />
               <Route path="/login" element={<Login handleLogin={handleLogin} />} />
               <Route path="/createPost" element={<CreatePost />} />
+              <Route path="/users/:userId" element={<viewUserProfile />} />
+              <Route path="/editBio" element={<BioForm/> } />
             </Routes>
           </div>
           <div className="trends-section">

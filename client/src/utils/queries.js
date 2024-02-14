@@ -61,6 +61,7 @@ query getAllPosts {
     picture
     createdAt
     userId {
+      _id
       username
     }
     likes {
@@ -69,6 +70,7 @@ query getAllPosts {
     comments {
       _id
       text
+      createdAt
       userId {
         username
       }

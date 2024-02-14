@@ -1,0 +1,50 @@
+/* Edit bio section */
+#title {
+    margin-top: 5%;
+    text-decoration: underline;
+}
+
+#editBio {
+    
+    position: fixed;
+    bottom: 20%;
+    right: 25%;
+    background-color: #fbaa13;
+}
+
+/* Bio section */
+
+#username {
+    font-weight: bolder;
+    /* display: flex; */
+    justify-content: start;
+    top: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#bioList {
+    margin-top: 2%;
+    padding: 1%;
+    width: 105%;
+    float: left;
+    font-weight: bold;
+    font-size: larger;
+    list-style-type: none;
+}
+
+.listData {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    padding: 1%;
+}
+
+#linkTag {
+    text-decoration: none;
+    color: black;
+}
+
+#linkText{
+    color: black;
+    font-weight: bolder;
+}

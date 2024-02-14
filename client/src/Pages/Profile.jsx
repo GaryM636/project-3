@@ -1,18 +1,20 @@
 import React from "react";
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
-import { useParams } from 'react-router-dom';
+import { QUERY_ME } from '../utils/queries';
+
+
 import ProfileImg from '../Components/Images/ProfileImages';
 import InfoBody from '../Components/InfoBody';
+import Auth from '../utils/auth';
+
+import Box from '@mui/material/Box';
 
 const Profile = () => {
-    const { userId } = useParams();
+    const userId = Auth.getProfile().data._id;
+    
+    const { data } = useQuery(QUERY_ME, { fetchPolicy: "cache-and-network" });
 
-    const { data } = useQuery(QUERY_USER, {
-        variables: { userId: userId },
-    });
-
-    const user = data?.user || {};
+    const user = data?.me || {};
 
     return (
         <>

@@ -1,0 +1,74 @@
+.profile {
+    position: relative; /* Ensure relative positioning for absolute positioning of profile picture */
+  }
+  
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #fbaa1394;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 21px;
+  }
+  
+  .images {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+  }
+  
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    overflow: hidden; /* Ensure the image is properly clipped when rounded */
+    border: 3px solid #000000; /* Add border and adjust color */
+  }
+  
+  .divider {
+    border: 1px solid #fbaa13;
+    margin: 20px 0;
+    width: 100%;
+  }
+  
+  /* Positioning the profile picture */
+  .profile-pic {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .bannerClick {
+    text-align: center;
+    font-size: 150px;
+  }
+  .profileClick {
+    text-align: center;
+    font-size: 75px;
+  }
+
+  .banner:hover {
+    cursor: pointer;
+   
+  }
+
+  .profile-pic:hover {
+    cursor: pointer;
+  }
+
+  .hover-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    display: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+  }
+  
+  .banner:hover .hover-box,
+  .profile-pic:hover .hover-box {
+    display: block;
+  }

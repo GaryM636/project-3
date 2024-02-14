@@ -10,7 +10,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import CommentForm from '../CommentForm/index.jsx';
 
-export default function PostWithImg() {
+ function PostWithImg() {
   const [ isCommentActive, setIsCommentActive ] = React.useState( false );
   return (
     <Card className='cards'>
@@ -28,7 +28,7 @@ export default function PostWithImg() {
         image="/static/images/cards/contemplative-reptile.jpg"
       />
       </div>
-      <CardActions className='card-actions'>
+      <CardActions id="LookingForComments" className='card-actions'>
         <BottomNav setIsCommentActive={setIsCommentActive} isCommentActive={isCommentActive}/>
       </CardActions>
       <Accordion expanded={isCommentActive}>
