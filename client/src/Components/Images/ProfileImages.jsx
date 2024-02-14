@@ -19,20 +19,28 @@ const Profile = () => {
   }, []);
 
   const handleBannerDrop = ([file]) => {
-    const url = URL.createObjectURL(file);
-    const { width, height } = file;
-    setBanner({ url, width, height });
-    localStorage.setItem('banner', JSON.stringify({ url, width, height }));
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = reader.result;
+      const { width, height } = file;
+      setBanner({ url, width, height });
+      localStorage.setItem('banner', JSON.stringify({ data: reader.result, width, height }));
+    };
+    reader.readAsDataURL(file);
   };
-
+  
   const handleProfileDrop = ([file]) => {
-    const url = URL.createObjectURL(file);
-    setProfilePic(url);
-    localStorage.setItem('profilePic', url);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = reader.result;
+      setProfilePic(url);
+      localStorage.setItem('profilePic', reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
-  const bannerDropzone = useDropzone({ onDrop: handleBannerDrop, accept: ['image/*'] });
-  const profileDropzone = useDropzone({ onDrop: handleProfileDrop, accept: ['image/*'] });
+  const bannerDropzone = useDropzone({ onDrop: handleBannerDrop, accept: {'image/*': ['.jpeg', '.jpg', '.png']} });
+  const profileDropzone = useDropzone({ onDrop: handleProfileDrop, accept: {'image/*': ['.jpeg', '.jpg', '.png']} });
 
   return (
     <div className="profile">
