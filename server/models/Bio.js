@@ -17,9 +17,8 @@ const BioSchema = new Schema(
                 'Invalid URL type.']
         },
         birthday: {
-            type: Date,
-            default: Date.now,
-            get: (timestamp) => dateFormat(timestamp),
+            type: String,
+            
         },
         userId: {
             type: Schema.Types.ObjectId,

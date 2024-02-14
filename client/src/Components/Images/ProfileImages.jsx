@@ -31,8 +31,8 @@ const Profile = () => {
     localStorage.setItem('profilePic', url);
   };
 
-  const bannerDropzone = useDropzone({ onDrop: handleBannerDrop, accept: ['image/jpeg', 'image/png'] });
-  const profileDropzone = useDropzone({ onDrop: handleProfileDrop, accept: ['image/jpeg', 'image/png'] });
+  const bannerDropzone = useDropzone({ onDrop: handleBannerDrop, accept: ['image/*'] });
+  const profileDropzone = useDropzone({ onDrop: handleProfileDrop, accept: ['image/*'] });
 
   return (
     <div className="profile">
