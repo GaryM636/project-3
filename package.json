@@ -6,7 +6,8 @@
     "start": "node server/server.js",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
     "build": "cd client && npm run build",
-    "render-build":"npm install && npm run build"
+    "render-build":"npm install && npm run build",
+    "install": "cd server && npm i && cd ../client && npm i"
   },
   "keywords": [],
   "author": "",
