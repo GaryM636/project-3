@@ -17,7 +17,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const path = require('path');
 
 const server = new ApolloServer({
   typeDefs,
