@@ -3,9 +3,24 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
+const multer = require('multer');
+const path = require('path');
+
+// Set up multer for handling file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 const server = new ApolloServer({
-	typeDefs, resolvers
+  typeDefs,
+  resolvers,
 });
 
 const app = express();
@@ -15,21 +30,28 @@ const PORT = process.env.PORT || 3003;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Add a route for handling file uploads
+app.post('/upload', upload.single('file'), (req, res) => {
+  // File uploaded successfully
+  const fileName = req.file.filename;
+  res.json({ fileName: fileName, filePath: '/uploads/' + fileName });
+});
+
 const db = require('./config/connection');
 
 const startApolloServer = async () => {
-	await server.start();
+  await server.start();
 
-	app.use('/graphql', expressMiddleware(server, {
-		context: authMiddleware
-	}));
+  app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
 
-	db.once('open', () => {
-		app.listen(PORT, () => {
-			console.log(`Server running at http://localhost:${PORT}/`);
-			console.log(`GraphQL API running at http://localhost:${PORT}/graphql`);
-		});
-	});
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}/`);
+      console.log(`GraphQL API running at http://localhost:${PORT}/graphql`);
+    });
+  });
 }
 
 startApolloServer();
