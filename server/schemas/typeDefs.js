@@ -75,6 +75,7 @@ module.exports = gql`
         likePost(postId: ID!): Post
         likeComment(commentId: ID!): Comment
         followUser(userId: ID!): User
-        login(email: String!, password: String!): Auth 
+        login(email: String!, password: String!): Auth
+        deletePost(postId: ID!): Boolean # New mutation for deleting a post
     }
 `;

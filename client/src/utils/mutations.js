@@ -82,3 +82,10 @@ mutation login($email: String!, $password: String!) {
   }
 }
 `; // Good
+
+// Delete Post
+export const DELETE_POST = gql`
+mutation DeletePost($postId: ID!) {
+  deletePost(postId: $postId)
+}
+`; // Added

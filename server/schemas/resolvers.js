@@ -155,6 +155,33 @@ module.exports = {
             const token = signToken(user);
 
             return { token, user };
-        } // Done
-    } // Done
-};
+        }, // Done
+
+
+        deletePost: async (_, { postId }) => {
+            console.log('Received postId:', postId); // Log the postId
+        
+            try {
+                // Check if the post exists
+                const post = await Post.findById(postId);
+        
+                // If the post doesn't exist, throw an error
+                if (!post) {
+                    throw new Error('Post not found.');
+                }
+        
+                // Delete the post by ID
+                const deletedPost = await Post.findByIdAndDelete(postId);
+        
+                // Delete associated comments
+                await Comment.deleteMany({ _id: { $in: deletedPost.comments } });
+        
+                return true; // Return true to indicate successful deletion
+            } catch (err) {
+                console.error(err);
+                throw new Error('Failed to delete post.');
+            }
+        }        
+
+    }
+} // Done
