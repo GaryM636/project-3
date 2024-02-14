@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import BottomNav from '../PostBottomNav/index.jsx';
 
-export default function PostWoImg() {
+ function PostWoImg() {
   return (
     <Card className='cards'>
       <CardContent>

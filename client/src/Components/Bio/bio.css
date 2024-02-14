@@ -5,17 +5,21 @@
 }
 
 #editBio {
+    
     position: fixed;
-    bottom: 5%;
-    right: 40%;
+    bottom: 20%;
+    right: 25%;
+    background-color: #fbaa13;
 }
 
 /* Bio section */
+
 #username {
     font-weight: bolder;
     /* display: flex; */
     justify-content: start;
     top: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #bioList {
@@ -37,4 +41,10 @@
 
 #linkTag {
     text-decoration: none;
+    color: black;
+}
+
+#linkText{
+    color: black;
+    font-weight: bolder;
 }
