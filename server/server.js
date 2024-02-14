@@ -18,9 +18,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+	typeDefs, resolvers
 });
 
 const app = express();
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 const db = require('./config/connection');
 
 const startApolloServer = async () => {
-  await server.start();
+	await server.start();
 
 	app.use('/graphql', expressMiddleware(server, {
 		context: authMiddleware
@@ -46,12 +46,12 @@ const startApolloServer = async () => {
 		});
 	  }
 
-  db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}/`);
-      console.log(`GraphQL API running at http://localhost:${PORT}/graphql`);
-    });
-  });
+	db.once('open', () => {
+		app.listen(PORT, () => {
+			console.log(`Server running at http://localhost:${PORT}/`);
+			console.log(`GraphQL API running at http://localhost:${PORT}/graphql`);
+		});
+	});
 }
 
 startApolloServer();

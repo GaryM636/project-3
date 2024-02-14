@@ -13,6 +13,9 @@ const AsideMenu = ({ isLoggedIn, handleLogout }) => {
                 {isLoggedIn && (
                     <>
                         <li>
+                            <Link to="/notifications"><i className="fa-solid fa-circle-exclamation"></i>Notifications</Link>
+                        </li>
+                        <li>
                             <Link to="/messages"><i className="fa-solid fa-envelope"></i>Messages</Link>
                         </li>
                     </>
