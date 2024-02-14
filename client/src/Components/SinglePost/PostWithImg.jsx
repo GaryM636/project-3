@@ -10,7 +10,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import CommentForm from '../CommentForm/index.jsx';
 
-export default function PostWithImg() {
+ function PostWithImg() {
   const [ isCommentActive, setIsCommentActive ] = React.useState( false );
   return (
     <Card className='cards'>

@@ -1,9 +1,7 @@
-import { useQuery } from "@apollo/client";
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_POSTS } from "../../utils/queries";
-
-
-
-import * as React from 'react';
+import { DELETE_POST } from "../../utils/mutations";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -17,39 +15,53 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 
-
 import '../PostsList/post.css';
-
 
 const PostsList = () => {
   const userId = Auth.getProfile().data._id
-  const [isCommentActive, setIsCommentActive] = React.useState(false);
+  const [activeAccordion, setActiveAccordion] = useState(null);
+  const [postsData, setPostsData] = useState([]);
+  const { data, loading, refetch } = useQuery(QUERY_POSTS, { fetchPolicy: "cache-and-network" });
+  const [deletePost] = useMutation(DELETE_POST);
 
-  const { data, loading } = useQuery(QUERY_POSTS, { fetchPolicy: "cache-and-network" });
-
-    const posts = data?.getAllPosts || [];
-  
-
-
-    
+  useEffect(() => {
+    if (data && data.getAllPosts) {
+      setPostsData(data.getAllPosts);
+    }
+  }, [data]);
 
   if (loading) {
-    return <h3>No Posts Yet</h3>;
+    return <h3>Loading Posts...</h3>;
   }
+
+  const handleAccordionChange = (postId) => {
+    setActiveAccordion(activeAccordion === postId ? null : postId);
+  };
+
+  const canDelete = (postId) => {
+    return userId === postId;
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await deletePost({
+        variables: { postId }
+      });
+      refetch(); // Refetch posts after deletion
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
 
   return (
     <>
-      {posts.toReversed().map((post) => (
-        <Card className='cards' key={post._id} sx={{
-          minWidth: 1,
-        }}>
+      {postsData.toReversed().map((post) => (
+        <Card className='cards' key={post._id} sx={{ minWidth: 1 }}>
           <CardContent>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-
               <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">
                 <Link to={`/users/${post.userId._id}`}> {post.userId.username} </Link>
               </Typography>
-
               <Typography sx={{ fontWeight: "400" }} variant="body2" color="text.secondary">
                 {post.createdAt}
               </Typography>
@@ -59,25 +71,24 @@ const PostsList = () => {
             </Typography>
           </CardContent>
           <CardActions className='card-actions'>
-            <BottomNav setIsCommentActive={setIsCommentActive} isCommentActive={isCommentActive} />
+            <BottomNav
+              handleAccordionChange={() => handleAccordionChange(post._id)}
+              isCommentActive={activeAccordion === post._id}
+              canDelete={canDelete(post.userId._id)}
+              postId={post._id}
+              onDelete={() => handleDelete(post._id)}
+              refetchPosts={refetch}
+            />
           </CardActions>
-          <Accordion expanded={isCommentActive}>
-            <AccordionSummary
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
+          <Accordion expanded={activeAccordion === post._id}>
+            <AccordionSummary aria-controls="panel1-content" id="panel1-header">
               <Typography>Comments</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <CommentForm postId={post._id} userId={userId} />
               <Typography>
                 {post.comments.map((comment) => (
-                  <Box key={comment._id} sx={{
-                    border: "1px solid #d3d3d3",
-                    borderRadius: "3px",
-                    padding: "5px",
-                    marginBottom: "5px",
-                  }}>
+                  <Box key={comment._id} sx={{ border: "1px solid #d3d3d3", borderRadius: "3px", padding: "5px", marginBottom: "5px" }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
                       <Typography sx={{ fontWeight: "800" }} variant="body2" color="text.secondary">
                         <Link to={`/users/${comment.userId._id}`}>{comment.userId.username}</Link>
@@ -95,6 +106,5 @@ const PostsList = () => {
     </>
   )
 }
-
 
 export default PostsList;

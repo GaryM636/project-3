@@ -65,7 +65,9 @@ export default function InfoBody(props) {
         <BioLayout />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
+        <>
         { user.posts?.length > 0 && <PostsList posts={user.posts} /> }
+        </>
       </CustomTabPanel>
     </Box>
   );
