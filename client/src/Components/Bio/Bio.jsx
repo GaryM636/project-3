@@ -25,34 +25,25 @@ function BioLayout() {
 
     return (
         <>
-            <div>
+            <div style= {{marginRight: '5%',}}>
                 <h1 id="username">{bio.username}</h1>
-                <ul id="bioList">
+                <ul id="bioList" style={{ border: '3px solid black', marginBlockStart: '1px', marginInlineStart: '1px', }}>
                     <li className="listData">About:
-                        <p>
-                            {bio.bio.text}
-                        </p>
+                        <p>{bio.bio.text}</p>
                     </li>
                     <li className="listData">Location:
-                        <p>
-                            {bio.bio.location}
-                        </p>
+                        <p>{bio.bio.location}</p>
                     </li>
                     <li className="listData">Website:
                         <Link sx={{ textDecoration: "none" }} to={`${bio.bio.website}`} target="_blank">
-                            <p id="linkTag">
-                                Here
-                            </p>
+                            <p id="linkTag">Here</p>
                         </Link>
                     </li>
                     <li className="listData">Birthday:
-                        <p>
-                            {bio.bio.birthday}
-                        </p>
+                        <p>{bio.bio.birthday}</p>
                     </li>
                 </ul>
             </div>
-
 
 
 
@@ -126,7 +117,7 @@ function BioLayout() {
             </Card> */}
             <Link id="editBio" to="/editBio">
                 <Typography sx={{ textDecoration: "none" }} variant="text">
-                    <Button>Edit Bio</Button>
+                    <Button id="linkText">Edit Bio</Button>
                 </Typography>
             </Link>
         </>
