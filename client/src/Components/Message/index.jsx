@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_MESSAGES } from "../../utils/queries.js";
 import Auth from "../../utils/auth.js";
+import MessageForm from "../MessageForm/index.jsx";
 
 
 const Messages = () => {
@@ -53,11 +54,11 @@ const Messages = () => {
     <div>
       <h2>Messages</h2>
       {Object.entries(conversations).map(([conversationKey, messages]) => (
-        <div key={conversationKey}>
+        <div className="message-cards-container" key={conversationKey}>
           <h2>{conversationKey}</h2>
           <ul>
             {messages.map((message, index) => (
-              <li key={index}>
+              <li className="message-card" key={index}>
                 <p>Sender: {message.senderUsername}</p>
                 <p>Receiver: {message.receiverUsername}</p>
                 <p>Message: {message.text}</p>
