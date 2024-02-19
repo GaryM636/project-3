@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import BottomNav from '../PostBottomNav/index.jsx';
 
-export default function PostWoImg() {
+ function PostWoImg() {
   return (
     <Card className='cards'>
       <CardContent>
@@ -14,7 +14,7 @@ export default function PostWoImg() {
           species, ranging across all continents except Antarctica
         </Typography>
       </CardContent>
-      <CardActions className='card-actions'>
+      <CardActions id="WhereIsThis" className='card-actions'>
         <BottomNav />
       </CardActions>
     </Card>

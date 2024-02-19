@@ -1,7 +1,5 @@
 import React from "react";
 import PostsList from "../Components/PostsList/index.jsx"
-import PostWithImg from "../Components/SinglePost/PostWithImg.jsx";
-import PostWoImg from "../Components/SinglePost/PostWoImg.jsx";
 import { Link } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';

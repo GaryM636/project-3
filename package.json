@@ -4,14 +4,23 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\""
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "build": "cd client && npm run build",
+    "render-build":"npm install && npm run build",
+    "install": "cd server && npm i && cd ../client && npm i"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2",
+    "date-fns": "^3.3.1",
+    "express": "^4.18.2",
+    "react-datepicker": "^6.1.0",
     "react-router": "^6.22.0"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
 }

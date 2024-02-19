@@ -10,9 +10,6 @@ const AsideMenu = ({ isLoggedIn, handleLogout }) => {
                 <li>
                     <Link to="/"><i className="fa-solid fa-house"></i>Home</Link>
                 </li>
-                <li>
-                    <Link to="/discover"><i className="fa-solid fa-magnifying-glass"></i>Discover</Link>
-                </li>
                 {isLoggedIn && (
                     <>
                         <li>

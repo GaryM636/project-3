@@ -34,6 +34,7 @@ module.exports = gql`
         _id: ID
         text: String
         userId: User
+        createdAt: String
         likes: [CommentLikes]
     }
 
@@ -84,9 +85,25 @@ module.exports = gql`
         likePost(postId: ID!): Post
         likeComment(commentId: ID!): Comment
         followUser(userId: ID!): User
+<<<<<<< HEAD
         login(email: String!, password: String!): Auth 
         sendMessage(text: String!, receiverUsername: String! ): Message
     }
 
+<<<<<<< HEAD
 
 `;
+=======
+    type Message {
+        _id: ID
+        text: String!
+        createdAt: String
+        senderUsername: String!
+        receiverUsername: String!
+=======
+        login(email: String!, password: String!): Auth
+        deletePost(postId: ID!): Boolean # New mutation for deleting a post
+>>>>>>> 2fe5fb45f3e6f64ab6052e63c813e5dadcaf6de5
+    }
+`;
+>>>>>>> main

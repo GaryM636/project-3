@@ -83,6 +83,7 @@ mutation login($email: String!, $password: String!) {
 }
 `; // Good
 
+<<<<<<< HEAD
 export const SEND_MESSAGE=gql`
 mutation Mutation($text: String!, $receiverUsername: String!) {
   sendMessage(text: $text, receiverUsername: $receiverUsername) {
@@ -94,3 +95,11 @@ mutation Mutation($text: String!, $receiverUsername: String!) {
   }
 }
 `;
+=======
+// Delete Post
+export const DELETE_POST = gql`
+mutation DeletePost($postId: ID!) {
+  deletePost(postId: $postId)
+}
+`; // Added
+>>>>>>> main
