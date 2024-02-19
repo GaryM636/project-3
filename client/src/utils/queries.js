@@ -184,3 +184,15 @@ query Me {
   }
 }
 `;
+export const GET_MESSAGES = gql`
+query GetUserMessages{
+  getUserMessages {
+    _id
+    text
+    createdAt
+    senderUsername
+    receiverUsername
+  }
+
+}
+`;
