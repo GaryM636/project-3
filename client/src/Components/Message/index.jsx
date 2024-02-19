@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_MESSAGES } from "../../utils/queries.js";
 import Auth from "../../utils/auth.js";
-import MessageForm from "../MessageForm/index.jsx";
+
 
 
 const Messages = () => {
   const { loading, error, data } = useQuery(GET_MESSAGES, {
-    // variables: { userId: Auth.getProfile().data._id },
-    pollInterval: 10000,
+    pollInterval: 3000,
   });
   console.log(data);
 
   const [conversations, setConversations] = useState([])
+  const username = Auth.getProfile().data.username;
   console.log("conversations", conversations);
 
   useEffect(() => {
@@ -52,26 +52,33 @@ const Messages = () => {
 
   return (
     <div>
-      <h2>Messages</h2>
-      {Object.entries(conversations).map(([conversationKey, messages]) => (
-        <div className="message-cards-container" key={conversationKey}>
-          <h2>{conversationKey}</h2>
-          <ul>
-            {messages.map((message, index) => (
-              <li className="message-card" key={index}>
-                <p>Sender: {message.senderUsername}</p>
-                <p>Receiver: {message.receiverUsername}</p>
-                <p>Message: {message.text}</p>
-                <p>Sent: {message.createdAt}</p><br/>
-              </li>
-              
-            ))}
-          </ul>
-        </div>
-      ))}
-    
+      <h2>{username[0].toUpperCase() + username.substring(1)}, here are your conversations:</h2>
+      <br/>
+      {Object.entries(conversations).map(([conversationKey, messages]) => {
+        const [sender, receiver] = conversationKey.split("-");
+
+        const otherUser = sender === username ? receiver : sender;
+
+        return (
+          <div key={conversationKey}>
+            {console.log("object entries", conversations[conversationKey])}
+
+            <h2>{otherUser}</h2>
+            <ul>
+              {messages.map((message, index) => (
+                <li key={index}>
+                  <p>Sender: {message.senderUsername}</p>
+                  <p>Receiver: {message.receiverUsername}</p>
+                  <p>Message: {message.text}</p>
+                  <p>Sent on: {message.createdAt}</p>
+                  <br />
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </div>
- 
   );
 };
 
