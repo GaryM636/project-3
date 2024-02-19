@@ -71,12 +71,9 @@ function App() {
               <Route path="/users/:userId" element={<User />} />
               <Route path="/login" element={<Login handleLogin={handleLogin} />} />
               <Route path="/createPost" element={<CreatePost />} />
-<<<<<<< HEAD
               <Route path="/messages" element={<Messages />} />
-=======
               <Route path="/users/:userId" element={<viewUserProfile />} />
               <Route path="/editBio" element={<BioForm/> } />
->>>>>>> main
             </Routes>
           </div>
           <div className="trends-section">
