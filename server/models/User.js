@@ -46,7 +46,6 @@ const UserSchema = new Schema({
     {
         toJSON: {},
         id: false,
-        autoIndex: false
     }
 );
 
