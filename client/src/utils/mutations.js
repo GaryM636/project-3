@@ -83,7 +83,6 @@ mutation login($email: String!, $password: String!) {
 }
 `; // Good
 
-<<<<<<< HEAD
 export const SEND_MESSAGE=gql`
 mutation Mutation($text: String!, $receiverUsername: String!) {
   sendMessage(text: $text, receiverUsername: $receiverUsername) {
