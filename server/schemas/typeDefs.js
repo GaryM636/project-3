@@ -90,6 +90,4 @@ module.exports = gql`
         deletePost(postId: ID!): Boolean # New mutation for deleting a post
     }
 
-<<<<<<< HEAD
-
 `;
