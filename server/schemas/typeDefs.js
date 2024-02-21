@@ -57,6 +57,14 @@ module.exports = gql`
         user: User
     }
 
+    type Message {
+        _id: ID
+        text: String!
+        createdAt: String
+        senderUsername: String!
+        receiverUsername: String!
+    }
+    
     type Query {
         getAllUsers: [User]
         getUser(userId: ID): User
@@ -65,6 +73,8 @@ module.exports = gql`
         getAllComments: [Comment]
         getComment(commentId: ID): Comment
         me: User
+        getUserMessages: [Message]
+
     }
 
     type Mutation {
@@ -75,7 +85,11 @@ module.exports = gql`
         likePost(postId: ID!): Post
         likeComment(commentId: ID!): Comment
         followUser(userId: ID!): User
-        login(email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth # Works
+        sendMessage(text: String!, receiverUsername: String! ) : Message 
         deletePost(postId: ID!): Boolean # New mutation for deleting a post
     }
+
+<<<<<<< HEAD
+
 `;

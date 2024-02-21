@@ -40,11 +40,11 @@
 
   .bannerClick {
     text-align: center;
-    font-size: 150px;
+    font-size: 100px;
   }
   .profileClick {
     text-align: center;
-    font-size: 75px;
+    font-size: 20px;
   }
 
   .banner:hover {
